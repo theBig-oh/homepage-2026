@@ -5,6 +5,8 @@
 
 	display: flex;
 	height: min-content;
+	position: absolute;
+	top: 0;
 }
 
 .navBarContainerMobile {
@@ -19,7 +21,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	color: black;
-	height: 50px;
+	height: 100vh;
 	font-size: 2rem;
 }
 

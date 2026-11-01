@@ -10,6 +10,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        resourceQuery: /raw/,
+        type: 'asset/source'
+      },
+      {
+        test: /\.svg$/,
+        resourceQuery: { not: [/raw/]},
+        type: 'asset/resource'
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {

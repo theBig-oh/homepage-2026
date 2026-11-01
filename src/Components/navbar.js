@@ -1,4 +1,6 @@
 import MakeElement from '../Tools/MakeElement.js';
+import ghostLogo from '../assets/svg/ghost-logo.svg?raw';
+import bigOhLogo from '../assets/svg/thebigoh-logo.svg?raw';
 
 const makeEle = new MakeElement;
 
@@ -15,10 +17,14 @@ export default function NavBar(siteName, sitePages) {
 	const navBarPages = makeEle.createEle('div', 'NavBarPages', null, ['navBarPages', 'navBarItem']);
 
 	if (siteName && sitePages) {
+
+		navBarName.innerHTML = `<div id="site-logo"> ${bigOhLogo} </div>`;
+
+
 		sitePages.forEach((page, i) => {
 			let pageItem = makeEle.createEle('div','pageItem_'+i,null,['pageItem']);
 
-			pageItem.innerHTML = `<a href="/#${page}"> ${page} </div>`;
+			pageItem.innerHTML = `<a href="/#${page}"> ${page === 'Ghost' ? ghostLogo : page} </div>`;
 
 			navBarPages.append(pageItem);
 		})

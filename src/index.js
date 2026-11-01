@@ -5,7 +5,7 @@ import TitleCard from './Pages/titleCard.js';
 
 // Need to move this into a data file.
 let siteName = 'The_Big_Oh';
-let sitePages = ['Projects', 'Experience', 'Contact'];
+let sitePages = ['Projects', 'Experience', 'Contact', 'Ghost'];
 
 
 

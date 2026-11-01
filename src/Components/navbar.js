@@ -15,8 +15,6 @@ export default function NavBar(siteName, sitePages) {
 	const navBarPages = makeEle.createEle('div', 'NavBarPages', null, ['navBarPages', 'navBarItem']);
 
 	if (siteName && sitePages) {
-		navBarName.innerHTML = `<div> ${siteName} </div>`;
-
 		sitePages.forEach((page, i) => {
 			let pageItem = makeEle.createEle('div','pageItem_'+i,null,['pageItem']);
 

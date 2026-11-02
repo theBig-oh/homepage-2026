@@ -3,6 +3,7 @@ import MakeElement from './Tools/MakeElement.js';
 import NavBar from './Components/navbar.js';
 import AboutCard from './Pages/aboutCard.js';
 import ProjectsCard from './Pages/projectsCard.js';
+import Footer from './Components/footer.js';
 import Data from './data/data.js';
 
 
@@ -26,10 +27,9 @@ function RenderSite(){
 
   let bodyLayout = [NavBar(siteName, sitePages),
                     bodySpacer,
-                    AboutCard(Data.person),
-                    ProjectsCard(Data.work),
-                    makeEle.createEle('div','bodyArt',false,['bodyArt', 'bodyItems']),
-                    makeEle.createEle('div','footer',false,'footer-container')];
+                    AboutCard(Data.person, Data.work),
+                    ProjectsCard(Data.projects),
+                    Footer(Data.person.contact)];
 
 
   bodyLayout.forEach((item) => {

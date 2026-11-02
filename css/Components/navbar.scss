@@ -4,37 +4,71 @@
 	font-family: "Times New Roman", Times, serif;
  
 	display: flex;
-	height: min-content;
+	height: 100vh;
 	position: fixed;
 	top: 0;
-	left: 0; 
+	left: 0;
 	width: 100%;
 	z-index: 100;
+	transition: height 0.3s ease; // back to the top
 
-	--nav-height: #{$nav-height--expanded};
-	--logo-height: #{$logo-height--expanded};
+	border-bottom: 5px solid rgba(0,0,0,0);
 
+	&.scrolling {
+		height: 60vh;
+	}
+
+	// Mobile first: 100vh -> 70vh -> collapsed while scrolling
 	&.scrolled {
-		--nav-height: #{$nav-height--collapsed};
-		--logo-height: #{$logo-height--collapsed};
-		border-bottom: 5px solid black;
+		height: $nav-height--mobile--collapsed;
+		transition: 0.3s ease forwards;
+		border-bottom: 5px solid rgba(0,0,0,1);
 		background-color: #fff8f5;
     background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 	}
+
+	// Desktop override
+	@media (min-width: $break-md) {
+		transition: none;
+
+		&.scrolled {
+			height: min-content;
+			animation: none;
+		}
+	}
+}
+
+@keyframes mobileNavSettle {
+	0%   { height: $nav-height--mobile--expanded; }
+	50%  { height: $nav-height--mobile--peak; }
+	100% { height: $nav-height--mobile--collapsed; }
 }
 
 .site-logo,
 .pageItem a {
 	display: flex;
+
 	align-items: center;
 }
 
+.pageItem {
+	display: none;
+
+	&:last-of-type {
+		display: block;
+	}
+
+	@media (min-width: $break-md){
+		display: block;
+	}
+}
 .site-logo svg {
 	height: var(--logo-height);
 	width: auto;
 	display: block;
 	transition: height 0.3s ease;
+
 }
 
 .pageItem a svg {
@@ -43,13 +77,35 @@
 }
 
 .navBarContainerMobile {
+	--nav-height: #{$nav-height--mobile--expanded};
+	--logo-height: #{$logo-height--mobile--expanded};
+	align-self: center;
+
+	// centered stack (logo above pages); .scrolled switches it to a row
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	.scrolled & {
+		--nav-height: #{$nav-height--mobile--collapsed};
+		--logo-height: #{$logo-height--mobile--collapsed};
+
+		display: flex;
+		flex-direction: row;
+	}
+
 	@media (min-width: $break-md) {
-		display: none;
+		.scrolled &,
+		& {
+			display: none; 
+		}
 	}
 }
 
 .navBarContainerDesktop {
-	display: flex;
+	display: none;
 	flex-direction: row;
 	justify-content: space-between;
 	color: black;
@@ -58,6 +114,18 @@
 	height: var(--nav-height);
 	transition: height 0.3s ease;
 	font-size: 2rem;
+
+	--nav-height: #{$nav-height--expanded};
+	--logo-height: #{$logo-height--expanded};
+
+	.scrolled & {
+		--nav-height: #{$nav-height--collapsed};
+		--logo-height: #{$logo-height--collapsed};
+	}
+
+	@media (min-width: $break-md) {
+		display: flex;
+	}
 }
 
 .navBarPages {

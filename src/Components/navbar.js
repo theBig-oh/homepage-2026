@@ -3,7 +3,11 @@ import ghostLogo from '../assets/svg/ghost-logo.svg?raw';
 import bigOhLogo from '../assets/svg/thebigoh-logo.svg?raw';
 
 const makeEle = new MakeElement;
-const SCROLL_THRESHOLD = 230;
+const SCROLL_THRESHOLD = {
+	'mobile': 1,
+	'desktop': 230
+};
+
 
 export default function NavBar(siteName, sitePages) {
 
@@ -11,7 +15,6 @@ export default function NavBar(siteName, sitePages) {
 	const navBarContainerBase = makeEle.createEle('div', 'NavBarContainerBase', [12,12,12,12],['navBarContainerBase']);
 	const navBarContainerDesktop = makeEle.createEle('div', 'NavBarContainerDesktop', [12, 12, 12, 12], ['navBarContainerDesktop','navBarContainer']);
 	const navBarContainerMobile  = makeEle.createEle('div', 'NavBarContainerMobile', null, ['navBarContainerMobile','navBarContainer']);
-	const navBarLogo 			 = makeEle.createEle('div', 'NavBarContainerLogo', null, ['navBarLogo', 'navBarContainer']);
 
 	// Populating the nav bar
 	const navBarName  = makeEle.createEle('div', 'NavBarName', null, ['navBarName','navBarItem']);
@@ -30,11 +33,17 @@ export default function NavBar(siteName, sitePages) {
 		})
 	}
 			
+	// "scrolling": between the top and the threshold. "scrolled": past the threshold.
 	const onScroll = () => {
-		navBarContainerBase.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+		const threshold = window.innerWidth < 768 ? SCROLL_THRESHOLD.desktop : SCROLL_THRESHOLD.mobile;
+		const y = window.scrollY;
+
+		navBarContainerBase.classList.toggle('scrolling', y > 0 && y <= threshold);
+		navBarContainerBase.classList.toggle('scrolled', y > threshold);
 	};
+
 	window.addEventListener('scroll', onScroll, { passive: true });
-	onScroll();
+	onScroll(); // correct state on load (e.g. refresh mid-scroll)
 
 	navBarContainerMobile.append(navBarName.cloneNode(true), navBarPages.cloneNode(true));
 	navBarContainerDesktop.append(navBarName, navBarPages);

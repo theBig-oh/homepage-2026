@@ -1,0 +1,89 @@
+@use '../settings' as *;
+
+.projectCardContainer {
+	display: flex;
+	flex-direction: column;
+	padding-top: 5rem;
+
+	.projectCardTitle {
+		transition: all 0.5s ease;
+
+		.title {
+			font-size: 5rem;
+			font-weight: bold;
+			transition: all 0.5s ease;
+		}
+
+		// Added once the drift reaches MAX_OFFSET
+		&.scrolling .title {
+			// style the end state here
+		}
+	}
+
+	// Mobile first: 1 column x 3 rows
+	.projectCardGrid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+
+		// 3 columns x 1 row
+		@media (min-width: $break-md) {
+			grid-template-columns: repeat(3, 1fr);
+			padding: 3rem;
+			padding-top:25rem;
+			
+			.projectItem {
+				width: 100%;
+			}
+
+		}
+	}
+
+	.projectItem {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 1rem;
+
+		.project-image {
+			width: 100%;
+			aspect-ratio: 2 / 1; // sources are 1.77 to 2.12, so little gets cropped
+			object-fit: cover;
+			object-position: top;
+			display: block;
+			border: 4px solid black;
+			margin-bottom: 1rem;
+		}
+
+		.project-name {
+			font-size: 3rem;
+			font-weight: bold;
+
+			a {
+				color: black;
+			}
+		}
+
+		.project-framework {
+			font-size: 3rem;
+			font-style: italic;
+		}
+
+		.project-purpose {
+			font-size: 2rem;
+			padding: 0;
+			list-style-position: inside; // bullets stay with centered text
+			text-align: left;
+			
+			@media (min-width: $break-md) {
+				padding-left: 4rem;
+				list-style-position: outside;
+			}
+		}
+
+		@media (min-width: $break-md) {
+			border-left: 4px solid black;
+			border-right: 4px solid black;
+		}
+	}
+}

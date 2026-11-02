@@ -1,3 +1,10 @@
+import reactGuitarImg from '../assets/img/reactguitar.webp';
+import guitarReduxImg from '../assets/img/guitarredux.webp';
+import evenHubImg from '../assets/img/evenhub.webp';
+import emailIcon from '../assets/img/email.png';
+import linkedInIcon from '../assets/img/linkedIn.png';
+import gitIcon from '../assets/img/gitBlack.png';
+
 var data = {
             /* Personal Info */
             "person": {
@@ -19,19 +26,19 @@ var data = {
                   "name":"Email",
                   "link":"mailTo:Oscar@TheBigOh.net",
                   "handle":"Oscar@TheBigOh.net",
-                  "icon":"../images/icons/email.png"
+                  "icon":emailIcon
                 },
                 {
                   "name":"linkedIn",
                   "link":"https://www.linkedin.com/in/oscarmedrano/",
                   "handle":"Oscar Medrano",
-                  "icon":"../images/icons/linkedIn.png"
+                  "icon":linkedInIcon
                 },
                 {
                   "name":"Github",
                   "link":"http://github.com/thebig-oh",
                   "handle":"thebig-oh",
-                  "icon":"../images/icons/gitBlack.png"
+                  "icon":gitIcon
                 },
                 {
                   "name":"Instagram",
@@ -117,6 +124,17 @@ var data = {
             /* Projects */
             "projects": [
               {
+                "name": "BikeShare Viewer",
+                "url":"https://hub.evenrealities.com/landing?package_id=com.omedrano.citibikemap",
+                "framework":"TypeScript",
+                "purpose": [
+                    "Available for the Even Realities G2 glasses, using the ER design system.",
+                    "Supports multiple cities that use a bike share service.",
+                    "Real Time data from Bikeshare providers APIs."
+                ],
+                "projectImage": evenHubImg,
+              },
+              {
                 "name": "Guitar Tools",
                 "url":"http://reactguitar.thebigoh.net",
                 "framework":"ReactJS",
@@ -125,7 +143,7 @@ var data = {
                   "Added a \"Lefty\" mode for lefty guitarist after popular demand",
                   "Made with \"Responsive Design\" in mind, so you can use it on any device."
                 ],
-                "projectImage": "https://i.imgur.com/b4bmsg2.png?1",
+                "projectImage": reactGuitarImg,
               },
               {
                 "name": "Guitar Tools",
@@ -136,7 +154,7 @@ var data = {
                   "Stylized to look like a marshalls amp",
                   "Made with Vanilla JS only. Desktop Only"
                 ],
-                "projectImage": "https://i.imgur.com/b4bmsg2.png?1",
+                "projectImage": guitarReduxImg,
               }              
             ]
           }

@@ -1,0 +1,60 @@
+@use '../settings' as *;
+
+// .bodyItems (background + full width) sets height: 100vh on desktop; a footer should fit its content.
+// Prefixed with .bodyContain so it outranks that rule regardless of stylesheet order.
+.bodyContain .footerContainer.bodyItems {
+	height: fit-content;
+}
+
+.footerContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 4rem 2rem;
+	border-top: 5px solid black;
+
+	.footerTitle .title {
+		font-size: 4rem;
+		font-weight: bold;
+	}
+
+	// Mobile first: stacked
+	.footerLinks {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+
+		@media (min-width: $break-md) {
+			flex-direction: row;
+			align-items: center;
+			gap: 5rem;
+		}
+	}
+
+	.footerLink a {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		color: black;
+		font-size: 2rem;
+		text-decoration: none;
+
+		&:hover .footer-handle {
+			text-decoration: underline;
+		}
+	}
+
+	.footer-icon {
+		// icons have different aspect ratios, so fit each in the same box
+		width: 4rem;
+		height: 4rem;
+		object-fit: contain;
+		transition: transform 0.3s ease;
+	}
+
+	.footerLink a:hover .footer-icon {
+		transform: scale(1.1);
+	}
+}

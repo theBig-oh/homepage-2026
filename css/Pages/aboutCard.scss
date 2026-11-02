@@ -1,0 +1,52 @@
+
+.aboutCardContainer {
+	height: 100%;
+
+	.aboutCardContent {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas:
+				'name info'
+				'portrait info';
+
+		// Cancel Bootstrap 3 .col-* width/float so items fill their grid areas
+		> * {
+			width: auto;
+			float: none;
+		}
+	}
+
+	.aboutCardName {
+		font-size: 5rem;
+		font-weight: bold;
+		grid-area: name;
+	}
+
+	.aboutCardPortrait {
+		grid-area: portrait;
+	}
+
+	.aboutCardInfo {
+		grid-area: info;
+		margin-top: 15rem;
+		border-left: 1px solid black;
+		display: flex;
+		flex-direction: column;
+
+		.basic-title {
+			font-size: 5rem;
+			font-weight: bold;
+			width: 70%;
+		}
+
+		.skill-set-title {
+			font-size: 4rem;
+			font-weight: bold;
+		}
+
+		.skill-set {
+			font-size: 3rem;
+			font-weight: bold;
+		}
+	}
+} 

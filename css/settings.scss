@@ -21,3 +21,10 @@ $break-md: 48rem;
 $break-lg: 75rem;
 $break-xl: 90rem;
 
+// Navbar sizes (expanded = top of page, collapsed = after scroll)
+
+$nav-height--expanded: 100vh;
+$nav-height--collapsed: 8rem;
+$logo-height--expanded: 40vh;
+$logo-height--collapsed: 4rem;
+

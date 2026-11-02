@@ -6,8 +6,22 @@
   width: 100%;
   flex-wrap: wrap;
   position: relative;
-background-color: #fff8f5;
-background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  background-color: #fff8f5;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   height: 100vh;
+
+  .bodyItems {
+      font-family: "Times New Roman", Times, serif;
+
+    width: 100%;
+    height: 100vh;
+    background-color: #fff8f5;
+    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  }
+
+  .bodySpacer {
+    height: 90vh;
+  }
 }

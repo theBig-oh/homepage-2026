@@ -3,6 +3,7 @@ import ghostLogo from '../assets/svg/ghost-logo.svg?raw';
 import bigOhLogo from '../assets/svg/thebigoh-logo.svg?raw';
 
 const makeEle = new MakeElement;
+const SCROLL_THRESHOLD = 230;
 
 export default function NavBar(siteName, sitePages) {
 
@@ -18,11 +19,10 @@ export default function NavBar(siteName, sitePages) {
 
 	if (siteName && sitePages) {
 
-		navBarName.innerHTML = `<div id="site-logo"> ${bigOhLogo} </div>`;
-
+		navBarName.innerHTML = `<div class="site-logo"> ${bigOhLogo} </div>`;
 
 		sitePages.forEach((page, i) => {
-			let pageItem = makeEle.createEle('div','pageItem_'+i,null,['pageItem']);
+			let pageItem = makeEle.createEle('div','pageItem_'+i,null,['pageItem','pageItem__'+page]);
 
 			pageItem.innerHTML = `<a href="/#${page}"> ${page === 'Ghost' ? ghostLogo : page} </div>`;
 
@@ -30,10 +30,17 @@ export default function NavBar(siteName, sitePages) {
 		})
 	}
 			
+	const onScroll = () => {
+		navBarContainerBase.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+	};
+	window.addEventListener('scroll', onScroll, { passive: true });
+	onScroll();
+
 	navBarContainerMobile.append(navBarName.cloneNode(true), navBarPages.cloneNode(true));
 	navBarContainerDesktop.append(navBarName, navBarPages);
 
 	navBarContainerBase.append(navBarContainerDesktop,navBarContainerMobile);
+
 
 	return navBarContainerBase;
 }

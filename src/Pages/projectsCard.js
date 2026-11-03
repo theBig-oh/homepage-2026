@@ -32,8 +32,8 @@ export default function ProjectsCard(projects) {
 	const MAX_OFFSET = 150;
 	const speed = 0.5;  // anything less than 1 slows the drift
 
-	// Desktop only. Same breakpoint as $break-md in settings.scss (48rem)
-	const desktopQuery = window.matchMedia('(min-width: 48rem)');
+	// Desktop only. Same breakpoint as $break-md in settings.scss (64.0625rem)
+	const desktopQuery = window.matchMedia('(min-width: 64.0625rem)');
 
 	const onScroll = () => {
 		if (!projectCard.isConnected) return;

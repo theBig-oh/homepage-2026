@@ -7,11 +7,9 @@ const makeEle = new MakeElement;
 const TABS = ['Bio', 'Exp'];
 
 // Bio copytext: write your paragraph(s) about yourself here
-const BIO_COPY = 'I\'m a simple software developer raised in NYC, who likes guitars, food, and interacting with tech, with a dog who has his own fan club.';
+const BIO_COPY = 'NYC-raised front end developer who builds things for the web, and lately for smart glasses. When I\'m not coding I\'m probably playing guitar, hunting down good food, or being upstaged by my dog, who has his own fan club.';
 
 export default function AboutCard(data, work) {
-	console.log('this is the title card');
-
 
 	let aboutCard = makeEle.createEle('div','About',[12,12,12,12],['bodyContainerItem','aboutCardContainer','bodyItems']);
 	let aboutCardContent = makeEle.createEle('div','aboutCardContent',[12,12,12,12],['aboutCardContent','aboutCardContainerContent']);
@@ -30,9 +28,7 @@ export default function AboutCard(data, work) {
 				<br/>
 				<span>Developer</span>
 			</div>
-`;
-
-	console.log(data.skillSet);
+	`;
 
 	data.skillSet.forEach((skill, i) => {
 		let skillDiv = makeEle.createEle('div','skillDiv_'+i,[12,12,12,12],['skillDiv','skillDiv_'+i]);

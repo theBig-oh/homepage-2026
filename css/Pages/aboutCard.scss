@@ -104,7 +104,7 @@
 		flex-direction: column;
 		padding: 0 1rem; // mobile first: even padding so content stays centered
 		transition: all 0.5s ease;
-		
+
 		@media (min-width: $break-md) {
 			padding: 0 0 0 2rem;
 		}
@@ -185,7 +185,7 @@
 			margin: 1.5rem 0 2rem;
 
 			@media (min-width: $break-md) {
-				font-size: 4rem;
+				font-size: 3rem;
 			}
 		}
 

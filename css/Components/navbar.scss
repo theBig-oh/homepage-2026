@@ -83,15 +83,16 @@
 
 	// centered stack (logo above pages); .scrolled switches it to a row
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	margin: auto;
 
 	.scrolled & {
 		--nav-height: #{$nav-height--mobile--collapsed};
 		--logo-height: #{$logo-height--mobile--collapsed};
-
+		margin: none;
 		display: flex;
 		flex-direction: row;
 	}
@@ -152,16 +153,29 @@
 		}
 	}
 
+	// No outline on the link or logo, in any state (click leaves it focused)
+	.pageItem__Ghost a,
+	.pageItem__Ghost a:hover,
+	.pageItem__Ghost a:focus,
+	.pageItem__Ghost a:active,
+	.pageItem__Ghost svg {
+		outline: none;
+		-webkit-tap-highlight-color: transparent;
+	}
+
 	.pageItem__Ghost svg {
 		height: 9rem;
+		fill: black; // always black unless actively hovered
 		transition: all 0.5s ease;
 
 		.scrolled & {
 			height: 7rem;
 		}
+	}
 
-		&:hover {
-			outline: white;
+	// Hover only on real hover devices: on touch, :hover sticks after a tap and kept the logo white
+	@media (hover: hover) {
+		.pageItem__Ghost a:hover svg {
 			fill: white;
 		}
 	}

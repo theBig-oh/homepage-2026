@@ -1,6 +1,7 @@
 import MakeElement from '../Tools/MakeElement.js';
 import ghostLogo from '../assets/svg/ghost-logo.svg?raw';
 import bigOhLogo from '../assets/svg/thebigoh-logo.svg?raw';
+import { showGhostOverlay } from './ghostOverlay.js';
 
 const makeEle = new MakeElement;
 const SCROLL_THRESHOLD = {
@@ -27,7 +28,9 @@ export default function NavBar(siteName, sitePages) {
 		sitePages.forEach((page, i) => {
 			let pageItem = makeEle.createEle('div','pageItem_'+i,null,['pageItem','pageItem__'+page]);
 
-			pageItem.innerHTML = `<a href="/#${page}"> ${page === 'Ghost' ? ghostLogo : page} </div>`;
+			pageItem.innerHTML = page === 'Ghost'
+				? `<a href="/#${page}" aria-label="Ghost mode"> ${ghostLogo} </a>`
+				: `<a href="/#${page}"> ${page} </a>`;
 
 			navBarPages.append(pageItem);
 		})
@@ -35,7 +38,7 @@ export default function NavBar(siteName, sitePages) {
 			
 	// "scrolling": between the top and the threshold. "scrolled": past the threshold.
 	const onScroll = () => {
-		const threshold = window.innerWidth < 768 ? SCROLL_THRESHOLD.desktop : SCROLL_THRESHOLD.mobile;
+		const threshold = window.innerWidth < 1025 ? SCROLL_THRESHOLD.desktop : SCROLL_THRESHOLD.mobile;
 		const y = window.scrollY;
 
 		navBarContainerBase.classList.toggle('scrolling', y > 0 && y <= threshold);
@@ -49,6 +52,14 @@ export default function NavBar(siteName, sitePages) {
 	navBarContainerDesktop.append(navBarName, navBarPages);
 
 	navBarContainerBase.append(navBarContainerDesktop,navBarContainerMobile);
+
+	// One delegated listener covers both the desktop and the (cloned) mobile ghost link
+	navBarContainerBase.addEventListener('click', (event) => {
+		if (!event.target.closest('.pageItem__Ghost a')) return;
+
+		event.preventDefault();
+		showGhostOverlay();
+	});
 
 
 	return navBarContainerBase;

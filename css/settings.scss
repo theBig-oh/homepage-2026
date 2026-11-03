@@ -17,7 +17,7 @@ $color--khaki: #DFD0B8;
 // Breakpoints
 
 $break-sm: 20rem;
-$break-md: 48rem;
+$break-md: 64.0625rem; // 1025px: tablets (up to 1024px wide, portrait or landscape) keep the mobile layout
 $break-lg: 75rem;
 $break-xl: 90rem;
 
@@ -30,6 +30,6 @@ $logo-height--collapsed: 4rem;
 $nav-height--mobile--expanded: 100vh;
 $nav-height--mobile--peak: 70vh;
 $nav-height--mobile--collapsed: 8rem;
-$logo-height--mobile--expanded: 15vh;
+$logo-height--mobile--expanded: 10vh;
 $logo-height--mobile--collapsed: 5rem;
 

@@ -1,0 +1,77 @@
+@use '../settings' as *;
+
+// Shown by src/Components/ghostOverlay.js when the ghost logo is clicked
+.ghostOverlay {
+	position: fixed;
+	inset: 0;
+	z-index: 200; // above the navbar (100)
+	pointer-events: none; // never blocks the page
+	opacity: 0;
+	transition: opacity 0.5s ease; // fade in and fade out
+
+	&.visible {
+		opacity: 1;
+	}
+
+	.ghost-pic {
+		display: none;
+		position: absolute;
+		height: auto;
+		object-fit: contain;
+
+		&.show {
+			display: block;
+		}
+	}
+
+	// Mobile first: one random picture, centered
+	.ghost-pic {
+		inset: 0;
+		margin: auto;
+		max-width: 80vw;
+		max-height: 80vh;
+		width: auto;
+	}
+
+	// Desktop: one picture in each corner
+	@media (min-width: $break-md) {
+		.ghost-pic {
+			inset: auto;
+			margin: 0;
+			max-width: 22vw;
+			max-height: 45vh;
+
+			transition: transform 0.6s ease-out; // slide in; delay set per picture in ghostOverlay.js
+
+			// Each picture starts offscreen on its own edge
+			&:nth-child(1) {
+				top: 2rem;
+				left: 2rem;
+				transform: translateY(-100vh); // from the top
+			}
+
+			&:nth-child(2) {
+				top: 2rem;
+				right: 2rem;
+				transform: translateX(100vw); // from the right
+			}
+
+			&:nth-child(3) {
+				bottom: 2rem;
+				left: 2rem;
+				transform: translateX(-100vw); // from the left
+			}
+
+			&:nth-child(4) {
+				bottom: 2rem;
+				right: 2rem;
+				transform: translateY(100vh); // from the bottom
+			}
+
+			// Must stay after the nth-child rules (same specificity)
+			&.in {
+				transform: none;
+			}
+		}
+	}
+}

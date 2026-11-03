@@ -18,14 +18,12 @@
 		height: 60vh;
 	}
 
-	// Mobile first: 100vh -> 70vh -> collapsed while scrolling
 	&.scrolled {
 		height: $nav-height--mobile--collapsed;
 		transition: 0.3s ease forwards;
 		border-bottom: 5px solid rgba(0,0,0,1);
 		background-color: #fff8f5;
-    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    	background-image: url("../src/assets/img/brushed-alum-dark.png");
 	}
 
 	// Desktop override
@@ -37,12 +35,6 @@
 			animation: none;
 		}
 	}
-}
-
-@keyframes mobileNavSettle {
-	0%   { height: $nav-height--mobile--expanded; }
-	50%  { height: $nav-height--mobile--peak; }
-	100% { height: $nav-height--mobile--collapsed; }
 }
 
 .site-logo,

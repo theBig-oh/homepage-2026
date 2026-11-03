@@ -16,19 +16,15 @@
   flex-wrap: wrap;
   position: relative;
   background-color: #fff8f5;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  background-image: url("../src/assets/img/brushed-alum-dark.png");
   height: 100vh;
 
   .bodyItems {
-      font-family: "Times New Roman", Times, serif;
-
+    font-family: "Times New Roman", Times, serif;
     width: 100%;
     height: fit-content;
     background-color: #fff8f5;
-    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-    
+    background-image: url("../src/assets/img/brushed-alum-dark.png");
 
     @media (min-width: $break-md) {
       height: 100vh;

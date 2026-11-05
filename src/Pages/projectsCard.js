@@ -16,10 +16,11 @@ export default function ProjectsCard(projects) {
 		projectItem.innerHTML = `
 			<img class="project-image" src="${project.projectImage}" alt="${project.name} screenshot" loading="lazy" />
 			<h3 class="project-name">
-				<a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.name}</a> <span> \<-- Link here </span>
+				${project.name}
 			</h3>
 			<p class="project-framework">${project.framework}</p>
 			<ul class="project-purpose">${project.purpose.map((line) => `<li>${line}</li>`).join('')}</ul>
+			<a class="project-link" href="${project.url}" target="_blank" rel="noopener noreferrer"> Click to see </a>
 		`;
 
 		projectGrid.append(projectItem);

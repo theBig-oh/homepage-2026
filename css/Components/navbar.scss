@@ -29,10 +29,12 @@
 	// Desktop override
 	@media (min-width: $break-md) {
 		transition: none;
+		border-bottom: 0;
 
 		&.scrolled {
 			height: min-content;
 			animation: none;
+			border-bottom: 0;
 		}
 	}
 }
@@ -100,7 +102,7 @@
 .navBarContainerDesktop {
 	display: none;
 	flex-direction: row;
-	justify-content: space-between;
+
 	color: black;
 	width: 100%;
 	align-items: center;
@@ -119,6 +121,12 @@
 	@media (min-width: $break-md) {
 		display: flex;
 	}
+
+	// Logo is ~2.55:1 and shares the row with the 40% pages block, so cap its
+	// height by viewport width too (20vw => ~51vw wide) or it overflows near 1025px.
+	.site-logo svg {
+		height: min(var(--logo-height), 20vw);
+	}
 }
 
 .navBarPages {
@@ -133,13 +141,21 @@
 
 	.navBarContainerDesktop & {
 		width: 40%;
-		font-size: 5rem;
-		border-left: 5px solid black;
+		// scales with the viewport so the links never outgrow the 40% block (overflowed near 1025px)
+		font-size: min(5rem, 3vw);
 		padding-left: 1rem; 
 		transition: all 0.3s ease;
 
+		.pageItem {
+			display: none;
+
+			&:last-of-type {
+				display: block;
+			}
+		}
+
 		.scrolled & {
-			font-size: 3rem;
+			font-size: min(3rem, 3vw);
 
 			border: 0;
 		}
@@ -156,12 +172,20 @@
 	}
 
 	.pageItem__Ghost svg {
-		height: 9rem;
+		height: 90px;
 		fill: black; // always black unless actively hovered
 		transition: all 0.5s ease;
 
 		.scrolled & {
-			height: 7rem;
+			height: 60px;
+		}
+
+		@media (min-width: $break-md) {
+			height: 250px;
+
+			.scrolled & {
+				height: 100px;
+			}
 		}
 	}
 

@@ -1,7 +1,7 @@
 import '../css/style.scss';
 import MakeElement from './Tools/MakeElement.js';
 import NavBar from './Components/navbar.js';
-import AboutCard from './Pages/aboutCard.js';
+import {AboutCardDesktop, AboutCardMobile} from './Pages/aboutCard.js';
 import ProjectsCard from './Pages/projectsCard.js';
 import Footer from './Components/footer.js';
 import Data from './data/data.js';
@@ -27,8 +27,9 @@ function RenderSite(){
 
   let bodyLayout = [NavBar(siteName, sitePages),
                     bodySpacer,
-                    AboutCard(Data.person, Data.work),
-                    ProjectsCard(Data.projects),
+                    AboutCardDesktop(Data.person, Data.work, Data.projects),
+                    AboutCardMobile(Data.person, Data.work),
+                    ProjectsCard(Data.projects), // ProjectsCard will only be shown on mobile!!! 
                     Footer(Data.person.contact)];
 
 

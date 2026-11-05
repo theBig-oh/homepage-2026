@@ -4,6 +4,12 @@ import evenHubImg from '../assets/img/evenhub.webp';
 import emailIcon from '../assets/img/email.png';
 import linkedInIcon from '../assets/img/linkedIn.png';
 import gitIcon from '../assets/img/gitBlack.png';
+import jsIcon from '../assets/svg/JavaScript.svg?raw';
+import htmlIcon from '../assets/svg/HTML5.svg?raw';
+import cssIcon from '../assets/svg/CSS3.svg?raw';
+import reactIcon from '../assets/svg/React.svg?raw';
+import vueIcon from '../assets/svg/Vuejs.svg?raw';
+import javaIcon from '../assets/svg/Java.svg?raw';
 
 var data = {
             /* Personal Info */
@@ -51,26 +57,32 @@ var data = {
               "skillSet": [
                 { 
                   "name" : "JS/ES6",
+                  "icon": jsIcon,
                   "level": 8.75
                 },
                 {
                   "name":"HTML5",
+                  "icon": htmlIcon,
                   "level": 9
                 },
                 {
                   "name":"CSS",
+                  "icon": cssIcon,
                   "level": 10,
                 },
                 {
                   "name":"ReactJS",
+                  "icon": reactIcon,
                   "level": 7.5
                 },
                 {
                   "name":"VueJS",
+                  "icon": vueIcon,
                   "level": 7
                 },
                 {
                   "name":"Java",
+                  "icon": javaIcon,
                   "level": 10
                 }
               ],
@@ -141,7 +153,7 @@ var data = {
                 "purpose": [
                   "Wanted to help guitarist find their way around the fretboard with music theory",
                   "Added a \"Lefty\" mode for lefty guitarist after popular demand",
-                  "Made with \"Responsive Design\" in mind, so you can use it on any device."
+                  "Made with \"Responsive Design\" in mind."
                 ],
                 "projectImage": reactGuitarImg,
               },

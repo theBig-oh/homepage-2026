@@ -1,82 +1,93 @@
 @use '../settings' as *;
 
-.aboutCardContainer {
-	height: 100%;
+.aboutCardContainer.bodyItems.aboutCard {
+	background-color: $color--slate-black;
+	color: $color--light-tan;
 
-	.aboutCardContent {
-			display: grid;
-			// minmax(0, 1fr): an auto track grows to its widest child (switch/portrait)
-			// and overflows the container, pushing everything off-center
-			grid-template-columns: minmax(0, 1fr);
-			grid-template-areas:
-				'name'
-				'portrait'
-				'info';
-			
-
-		// Cancel Bootstrap 3 .col-* width/float so items fill their grid areas
-
+	&.aboutCardDesktop {
+		justify-content: center;
 
 		@media (min-width: $break-md) {
-			grid-template-areas:
-				'name info'
-				'portrait info';
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-
-			> * {
-				width: auto;
-				float: none;
-			}
-
+			display: flex;
 		}
-
 	}
 
-	.aboutCardName {
-		font-size: 5rem;
-		font-weight: bold;
-		grid-area: name;
-		transition: all 0.5s ease;
+	&.aboutCardMobile {
 
-		&.scrolling {
-			.name-text {
-				transition: all 0.5s ease;
+		@media (min-width: $break-md) {
+			display: none;
+		}
+
+		.aboutCardContents {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				grid-template-areas:
+					'name'
+					'portrait'
+					'info';
 				
-			}
-
-			.portrait-pic {
-				display: flex;
-				opacity: 1;
-			}
-
-
 			@media (min-width: $break-md) {
-				border-right: 5px solid black;
+				grid-template-areas:
+					'name info'
+					'portrait info';
+				grid-template-columns: repeat(2, minmax(0, 1fr));
 
-				display: flex;
-				flex-direction: column;
-
-				.name-text {
-					padding-left: 25rem;
+				> * {
+					width: auto;
+					float: none;
 				}
 			}
 		}
 
-
-		.basic-title {
+		.aboutCardName {
 			font-size: 5rem;
 			font-weight: bold;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-    		flex-wrap: wrap;
-    		text-align: center;
+			grid-area: name;
+			transition: all 0.5s ease;
 
-    		span {
-    			width: 100%;
-    		}
+			&.scrolling {
+				.name-text {
+					transition: all 0.5s ease;
+				}
+
+				.portrait-pic {
+					display: flex;
+					opacity: 1;
+				}
+
+
+				@media (min-width: $break-md) {
+					border-right: 5px solid black;
+
+					display: flex;
+					flex-direction: column;
+
+					.name-text {
+						padding-left: 25rem;
+					}
+				}
+			}
+
+
+			.basic-title {
+				font-size: 3rem;
+				font-weight: bold;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+	    		flex-wrap: wrap;
+	    		text-align: center;
+	    		margin-top: 2rem;
+	    		span {
+	    			width: 100%;
+	    		}
+
+	    		@media (min-width: $break-md) {
+	    			font-size: 5rem;
+	    			margin-top: 1rem;
+	    		}
+			}
 		}
-	}
 
 	.aboutCardPortrait {
 		grid-area: portrait;
@@ -113,6 +124,10 @@
 			font-size: 5rem;
 			font-weight: bold;
 			width: 100%;
+
+			@media (min-width: $break-md) {
+				font-size: 5rem;
+			}
 		}
 
 		.aboutCardSwitch {
@@ -120,6 +135,7 @@
 			width: 100%;
 			margin-bottom: 2rem;
 			border: 3px solid black;
+
 		}
 
 		.aboutSwitchBtn {
@@ -134,6 +150,7 @@
 			border-right: 3px solid black;
 			cursor: pointer;
 			transition: background-color 0.3s ease, color 0.3s ease;
+			text-transform: capitalize;
 
 			&:last-child {
 				border-right: 0;
@@ -179,14 +196,22 @@
 			}
 		}
 
-		.bio-copy {
-			font-size: 2rem;
+		.basic-info {
+			font-size: 1.2rem;
 			line-height: 1.5;
-			margin: 1.5rem 0 2rem;
+			margin: 1.5rem 0 1rem;
 
-			@media (min-width: $break-md) {
-				font-size: 3rem;
-			}
+
+		}
+
+
+		.sig {
+			font-size: 3rem;
+			font-weight: bold;
+			font-style: italic;
+			margin-bottom: 2rem;
+			border-bottom: 2px solid white;
+			padding-bottom: 2rem;
 		}
 
 		.skillHeader {
@@ -197,20 +222,254 @@
 		// 3 columns x 2 rows (6 skills)
 		.aboutCardSkill {
 			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr)); // minmax(0, ...) so long names can't widen the grid
+			grid-template-columns: repeat(3, minmax(0, 2fr)); // minmax(0, ...) so long names can't widen the grid
 			gap: 1rem;
-			font-size: 1.8rem; // mobile first: 3 columns in ~285px
+			font-size: 1.2rem; // mobile first: 3 columns in ~285px
 			font-weight: bold;
-
-			@media (min-width: $break-md) {
-				font-size: 3rem;
-			}
 
 			// Cancel Bootstrap 3 .col-* width/float so items fill their cells
 			.skillDiv {
 				width: auto;
 				float: none;
 				overflow-wrap: anywhere;
+			}
+		}
+	}
+
+	}
+
+	&.aboutCardDesktop .aboutCardContent {
+		display: flex;
+		height: 80%;
+		align-self: center;
+
+		.aboutCardLeft {
+			grid-area: left;
+			border-right: 3px solid $color--light-tan;
+			width: 400px;
+			margin-top: 6rem;
+
+		}
+
+		.aboutCardRight {
+			display: flex;
+			grid-area: right;
+			margin-top: 5rem;
+		}
+
+
+		.aboutCard--portrait {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			text-align: center;
+
+			.aboutCard--port-name {
+				transition: all 1.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
+			
+				h2 {
+					font-size: 4rem;
+					font-weight: bold;
+				}
+			}
+
+			.aboutCard--img {
+				height: 400px;
+				width: 320px;
+			}
+		}
+
+		.aboutCardTabs {
+			display: flex;
+			flex-direction: column;
+			font-size: 5rem;
+			text-transform: uppercase;
+			margin-top: 8rem;
+			text-align: center;
+
+			.active {
+				background: $color--light-tan;
+				color: black;
+			}
+		}
+
+	
+
+		.aboutCard--bio {
+			display: flex;
+			flex-direction: column;
+			font-size: 2rem;
+			padding: 4rem;
+
+			.basic-info {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+
+				p {
+					width: 50%;
+					font-size: 2.3rem;
+
+					span {
+						opacity: 0;
+
+						&:hover {
+							opacity: 1;
+							transition: all 0.4s ease;
+						}
+					}
+				}
+				.sig {
+					font-size: 3rem;
+					font-weight: bold;
+					font-style: italic;
+				}
+			}
+
+			.aboutSkillContain {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				width: 600px;
+			}
+
+			.skillIcon {
+				height: 100px;
+				width: 100px;
+				display: flex;
+				margin-right: 3rem;
+
+			}
+
+			svg {
+				height: 100%;
+				width: 100%;
+			}
+		}
+
+		.aboutCard--exp {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-left: 2rem;
+
+			.job-site {
+				border-bottom: 3px solid $color--light-tan;
+				border-right: 3px solid $color--light-tan;
+				
+				padding: 1rem;
+				height: 80%;
+				margin-right: 2rem;
+			}
+
+			.exp {
+				&-name {
+					font-size: 4rem;
+					font-weight: bold;
+					text-decoration: underline;
+				}
+
+				&-position {
+					font-size: 3rem;
+					font-weight: bold;
+					font-style: italic;
+				}
+
+				&-dates {
+					font-size: 2rem;
+				}
+
+				&-duties {
+					background: rgba(0,0,0,0.2);
+					font-size: 1.75rem;
+					padding: 1.5rem;
+					list-style-position: inside;
+					border-radius: 4px;
+				}
+			}
+		}
+ 
+		.aboutCard--projects {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			.projectItem { // Clean this area up later
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 1rem;
+				margin: 1rem;
+				align-items: end;
+				min-height: 650px;
+				height: fit-content;
+				border-bottom: 5px solid $color--light-tan;
+				border-right: 3px solid $color--light-tan;
+				max-height: 650px;
+			}
+
+			.project {
+				&-image {
+					width: 100%;
+					height: 400px;
+					max-height: 400px;
+				}
+
+				&-name {
+					font-size: 3rem;
+				}
+
+				&-framework {
+					font-weight: bold;
+					font-style: italic;
+					font-size: 3rem;
+				}
+
+				&-purpose {
+					background: rgba(0,0,0,0.2);
+					padding: 1.5rem;
+					list-style-position: inside;
+					border-radius: 4px;
+				}
+
+				&-link {
+					border: 1px solid black;
+					padding: 1rem 2rem;
+					background: black;
+					color: $color--light-tan;
+					font-size: 2rem;
+					border-radius: 10px;
+					align-self: center;
+
+					&:hover {
+						background: $color--light-tan;
+						color: black;
+						cursor: hover;
+					}
+				}
+			}
+		}
+
+		.aboutCard--tab-content.hidden {
+			display: none;
+		}
+
+		.aboutTab {
+			cursor: pointer;
+			text-transform: capitalize;
+			margin-bottom: 2rem;
+			border-bottom: 3px solid black;
+
+			&:last-of-type {
+				border: 0;
+			}
+
+			&.active {
+				font-weight: bold;
 			}
 		}
 	}

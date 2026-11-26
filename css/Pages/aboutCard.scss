@@ -1,272 +1,41 @@
 @use '../settings' as *;
 
+@mixin bio-copy($size) {
+	p {
+		font-size: $size;
+		font-family: 'Hammersmith One', sans-serif;
+
+		&::first-letter {
+			font-family: 'DM Serif Display', serif;
+			font-size: 2.25rem;
+		}
+
+		span {
+			font-family: 'DM Serif Display', serif;
+			font-size: 2rem;
+			font-weight: bold;
+			letter-spacing: 1.75px;
+			text-transform: capitalize;
+
+			&.hint {
+				opacity: 0;
+				text-transform: none;
+
+				&:hover {
+					opacity: 1;
+					transition: all 0.4s ease;
+				}
+			}
+		}
+	}
+}
+
 .aboutCardContainer.bodyItems.aboutCard {
 	background-color: $color--dark-shade-brown;
 	color: $color--light-tan;
 
 	&.aboutCardDesktop {
-		justify-content: center;
 		display: none;
-
-		@media (min-width: $break-md) {
-			display: flex;
-			height: auto;
-			min-height: 110vh;
-		}
-	}
-
-	&.aboutCardMobile {
-		@media (min-width: $break-md) {
-			display: none;
-		}
-
-		.aboutCardContents {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr);
-			grid-template-areas:
-				'name'
-				'portrait'
-				'info';
-
-			@media (min-width: $break-md) {
-				grid-template-areas:
-					'name info'
-					'portrait info';
-				grid-template-columns: repeat(2, minmax(0, 1fr));
-
-				> * {
-					width: auto;
-					float: none;
-				}
-			}
-		}
-
-		.aboutCardName {
-			font-size: 5rem;
-			font-weight: bold;
-			grid-area: name;
-			transition: all 0.5s ease;
-
-			&.scrolling {
-				.name-text {
-					transition: all 0.5s ease;
-				}
-
-				.portrait-pic {
-					display: flex;
-					opacity: 1;
-				}
-
-				@media (min-width: $break-md) {
-					border-right: 5px solid black;
-
-					display: flex;
-					flex-direction: column;
-
-					.name-text {
-						padding-left: 25rem;
-					}
-				}
-			}
-
-			.basic-title {
-				font-size: 3rem;
-				font-weight: bold;
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-				text-align: center;
-				margin-top: 2rem;
-
-				span {
-					width: 100%;
-				}
-
-				@media (min-width: $break-md) {
-					font-size: 5rem;
-					margin-top: 1rem;
-				}
-			}
-		}
-
-		.aboutCardPortrait {
-			grid-area: portrait;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin: auto;
-
-			.portrait-pic {
-				width: 100%;
-				aspect-ratio: 3/4;
-				object-fit: cover;
-				border: 4px solid black;
-				box-shadow: 0 0 0 0 rgb(0 0 0 / 50%);
-				transition: all 0.5s ease;
-				opacity: 0;
-			}
-		}
-
-		.aboutCardInfo {
-			grid-area: info;
-			margin-top: 20rem;
-			font-family: 'DM Serif Display', serif;
-			display: flex;
-			flex-direction: column;
-			padding: 0 1rem;
-			transition: all 0.5s ease;
-
-			@media (min-width: $break-md) {
-				padding: 0 0 0 2rem;
-			}
-
-			.basic-title {
-				font-size: 5rem;
-				font-weight: bold;
-				width: 100%;
-
-				@media (min-width: $break-md) {
-					font-size: 5rem;
-				}
-			}
-
-			.aboutCardSwitch {
-				display: flex;
-				width: 100%;
-				margin-bottom: 2rem;
-				border: 3px solid black;
-			}
-
-			.aboutSwitchBtn {
-				flex: 1;
-				padding: 1rem 0;
-				font-family: inherit;
-				font-size: 2.5rem;
-				font-weight: bold;
-				color: black;
-				background: transparent;
-				border: 0;
-				border-right: 3px solid black;
-				cursor: pointer;
-				transition:
-					background-color 0.3s ease,
-					color 0.3s ease;
-				text-transform: capitalize;
-
-				&:last-child {
-					border-right: 0;
-				}
-
-				&:hover {
-					background: $color--dark-tan;
-				}
-
-				&.active {
-					color: $color--light-tan;
-					background: black;
-				}
-			}
-
-			.aboutPanel[hidden] {
-				display: none;
-				transition: all 0.5s ease;
-			}
-
-			.expItem {
-				margin-bottom: 2rem;
-
-				.exp-name {
-					font-size: 3rem;
-					font-weight: bold;
-				}
-
-				.exp-position,
-				.exp-dates {
-					font-size: 2rem;
-				}
-
-				.exp-duties {
-					font-size: 1.8rem;
-					padding: 0;
-					list-style-position: inside;
-
-					@media (min-width: $break-md) {
-						padding-left: 4rem;
-						list-style-position: outside;
-					}
-				}
-			}
-
-			.basic-info {
-				font-size: 1.2rem;
-				line-height: 1.5;
-				margin: 1.5rem 0 1rem;
-
-
-				p {
-				     font-size: 1.75rem;
-
-					font-family: 'Hammersmith One', sans-serif;
-
-					&::first-letter {
-							font-family: 'DM Serif Display', serif;
-							font-size: 2.25rem;
-					}
-
-					span {
-						
-						font-family: 'DM Serif Display', serif;
-						font-size: 2rem;
-						font-weight: bold;
-						letter-spacing: 1.75px;
-						text-transform: capitalize;
-
-						&.hint {
-							opacity: 0;
-							text-transform: none;
-
-							&:hover {
-							opacity: 1;
-							transition: all 0.4s ease;
-							}
-						}
-					}
-				}
-
-			}
-
-			.sig {
-				font-size: 3rem;
-				font-weight: bold;
-				font-style: italic;
-				margin-bottom: 2rem;
-				border-bottom: 2px solid white;
-				padding-bottom: 2rem;
-			}
-
-			.skillHeader {
-				font-size: 4rem;
-				font-weight: bold;
-			}
-
-			.aboutCardSkill {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 2fr));
-				gap: 1rem;
-				font-size: 1.2rem;
-				font-weight: bold;
-
-				.skillDiv {
-					width: auto;
-					float: none;
-					overflow-wrap: anywhere;
-				}
-			}
-		}
-	}
-
-	&.aboutCardDesktop {
 		justify-content: center;
 		margin-bottom: 25rem;
 		overflow-x: clip;
@@ -275,6 +44,8 @@
 
 		@media (min-width: $break-md) {
 			display: flex;
+			height: auto;
+			min-height: 110vh;
 		}
 
 		.aboutCardContent {
@@ -287,7 +58,6 @@
 		}
 
 		.aboutCardLeft {
-			grid-area: left;
 			border-right: 3px solid $color--light-tan;
 			width: 400px;
 			margin-top: 6rem;
@@ -296,7 +66,6 @@
 		.aboutCardRight {
 			display: grid;
 			grid-template-columns: minmax(0, 1fr);
-			grid-area: right;
 			margin-top: 5rem;
 			width: 100%;
 			min-width: 0;
@@ -321,47 +90,7 @@
 			text-align: center;
 
 			.aboutCard--port-name {
-				transition: all 1.5s
-					linear(
-						0 0%,
-						0 2.27%,
-						0.02 4.53%,
-						0.04 6.8%,
-						0.06 9.07%,
-						0.1 11.33%,
-						0.14 13.6%,
-						0.25 18.15%,
-						0.39 22.7%,
-						0.56 27.25%,
-						0.77 31.8%,
-						1 36.35%,
-						0.89 40.9%,
-						0.85 43.18%,
-						0.81 45.45%,
-						0.79 47.72%,
-						0.77 50%,
-						0.75 52.27%,
-						0.75 54.55%,
-						0.75 56.82%,
-						0.77 59.1%,
-						0.79 61.38%,
-						0.81 63.65%,
-						0.85 65.93%,
-						0.89 68.2%,
-						1 72.7%,
-						0.97 74.98%,
-						0.95 77.25%,
-						0.94 79.53%,
-						0.94 81.8%,
-						0.94 84.08%,
-						0.95 86.35%,
-						0.97 88.63%,
-						1 90.9%,
-						0.99 93.18%,
-						0.98 95.45%,
-						0.99 97.73%,
-						1 100%
-					);
+				transition: all 1.5s $easing-bounce;
 
 				h2 {
 					font-size: 4rem;
@@ -411,19 +140,18 @@
 		}
 
 		.aboutCard--bio {
-			grid-template-areas:
-				'bio pic'
-				'skill pic';
+			display: flex;
+			flex-flow: row wrap;
 			flex: 1 1 auto;
 			min-width: 0;
 			font-size: 2rem;
-			padding: clamp(1.5rem, calc((100vw - 499px) * 0.076), 4rem);
+			padding: fluid(1.5rem, 4rem, 0.076);
 
-			display: flex;
-			flex-flow: row wrap;
+			&--skills {
+				margin-top: 2rem;
+			}
 
 			.aboutSelfContain {
-				grid-area: pic;
 				display: flex;
 				height: 80%;
 				width: 50%;
@@ -443,36 +171,8 @@
 			.basic-info {
 				display: flex;
 				flex-flow: column wrap;
-				grid-area: bio;
 
-				p {
-					font-size: 1.5rem;
-					font-family: 'Hammersmith One', sans-serif;
-
-					&::first-letter {
-							font-family: 'DM Serif Display', serif;
-							font-size: 2.25rem;
-					}
-
-					span {
-						
-						font-family: 'DM Serif Display', serif;
-						font-size: 2rem;
-						font-weight: bold;
-						letter-spacing: 1.75px;
-						text-transform: capitalize;
-
-						&.hint {
-							opacity: 0;
-							text-transform: none;
-
-							&:hover {
-							opacity: 1;
-							transition: all 0.4s ease;
-							}
-						}
-					}
-				}
+				@include bio-copy(1.5rem);
 
 				.sig {
 					font-family: revert;
@@ -483,25 +183,13 @@
 
 				@media (min-width: $break-md) {
 					padding: 1rem;
-				background-color: $color--slate-black;
-				border-radius: 4px;
-				position: relative;
-				z-index: 1;
-				box-shadow: 6px 9px 12px 4px rgb(0 0 0), inset -5px -5px 10px black;
+					background-color: $color--slate-black;
+					border-radius: 4px;
+					position: relative;
+					z-index: 1;
+					box-shadow: $panel-shadow;
 
-							&::before {
-					content: ' ';
-					display: block;
-					height: 100%;
-					width: 100%;
-					position: absolute;
-					top: 0;
-					left: 0;
-					background-image: url('../src/assets/img/brushed-alum-dark.png');
-					background-size: auto;
-					background-position: center;
-					transform: scaleX(-1);
-				}
+					@include brushed-texture;
 				}
 			}
 
@@ -511,7 +199,6 @@
 				justify-content: flex-start;
 				width: 600px;
 				max-width: 100%;
-				grid-area: skill;
 			}
 
 			.skillIcon {
@@ -542,13 +229,13 @@
 				width: 100%;
 				max-height: 390px;
 				max-width: min(450px, calc((100vw - 410px - 6rem) / 2));
-				padding: clamp(0.75rem, calc((100vw - 499px) * 0.0267), 1.5rem);
-				margin-right: clamp(1rem, calc((100vw - 499px) * 0.0356), 2rem);
+				padding: fluid(0.75rem, 1.5rem, 0.0267);
+				margin-right: fluid(1rem, 2rem, 0.0356);
 				background-color: $color--slate-black;
 				border-radius: 4px;
 				position: relative;
 				z-index: 1;
-				box-shadow: 6px 9px 12px 4px rgb(0 0 0), inset -5px -5px 10px black;
+				box-shadow: $panel-shadow;
 
 				@media (width <= 1399px) {
 					height: auto;
@@ -556,54 +243,216 @@
 					align-self: stretch;
 				}
 
-				&::before {
-					content: ' ';
-					display: block;
-					height: 100%;
-					width: 100%;
-					position: absolute;
-					top: 0;
-					left: 0;
-					background-image: url('../src/assets/img/brushed-alum-dark.png');
-					background-size: auto;
-					background-position: center;
-					transform: scaleX(-1);
-				}
+				@include brushed-texture;
 			}
 
 			.exp {
 				&-name {
-					font-size: clamp(1.4rem, calc((100vw - 499px) * 0.0533), 3rem);
+					font-size: fluid(1.4rem, 3rem, 0.0533);
 					font-weight: bold;
 					border-bottom: 4px solid white;
 					letter-spacing: 1.5px;
 				}
 
 				&-position {
-					font-size: clamp(1.2rem, calc((100vw - 499px) * 0.0444), 2.5rem);
+					font-size: fluid(1.2rem, 2.5rem, 0.0444);
 					font-weight: bold;
 					font-style: italic;
 					letter-spacing: 1.75px;
 				}
 
 				&-dates {
-					font-size: clamp(0.9rem, calc((100vw - 499px) * 0.0267), 1.5rem);
+					font-size: fluid(0.9rem, 1.5rem, 0.0267);
 					font-weight: bold;
 				}
 
 				&-duties {
 					background: rgb(0 0 0 / 20%);
-					font-size: clamp(0.9rem, calc((100vw - 499px) * 0.0267), 1.5rem);
-					padding: clamp(0.75rem, calc((100vw - 499px) * 0.0267), 1.5rem);
+					font-size: fluid(0.9rem, 1.5rem, 0.0267);
+					padding: fluid(0.75rem, 1.5rem, 0.0267);
 					list-style-position: inside;
 					border-radius: 4px;
 					font-family: 'Hammersmith One', sans-serif;
 				}
 			}
 		}
+	}
 
-		.aboutCard--tab-content.hidden {
+	&.aboutCardMobile {
+		@media (min-width: $break-md) {
 			display: none;
+		}
+
+		.aboutCardContents {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				'name'
+				'portrait'
+				'info';
+		}
+
+		.aboutCardName {
+			font-size: 5rem;
+			font-weight: bold;
+			grid-area: name;
+			transition: all 0.5s ease;
+
+			&.scrolling {
+				.name-text {
+					transition: all 0.5s ease;
+				}
+
+				.portrait-pic {
+					display: flex;
+					opacity: 1;
+				}
+			}
+
+			.basic-title {
+				font-size: 3rem;
+				font-weight: bold;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				text-align: center;
+				margin-top: 2rem;
+
+				span {
+					width: 100%;
+				}
+			}
+		}
+
+		.aboutCardPortrait {
+			grid-area: portrait;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: auto;
+
+			.portrait-pic {
+				width: 100%;
+				aspect-ratio: 3/4;
+				object-fit: cover;
+				border: 4px solid black;
+				transition: all 0.5s ease;
+				opacity: 0;
+			}
+		}
+
+		.aboutCardInfo {
+			grid-area: info;
+			margin-top: 20rem;
+			font-family: 'DM Serif Display', serif;
+			display: flex;
+			flex-direction: column;
+			padding: 0 1rem;
+			transition: all 0.5s ease;
+
+			.basic-title {
+				font-size: 5rem;
+				font-weight: bold;
+				width: 100%;
+			}
+
+			.aboutCardSwitch {
+				display: flex;
+				width: 100%;
+				margin-bottom: 2rem;
+				border: 3px solid black;
+			}
+
+			.aboutSwitchBtn {
+				flex: 1;
+				padding: 1rem 0;
+				font-family: inherit;
+				font-size: 2.5rem;
+				font-weight: bold;
+				color: black;
+				background: transparent;
+				border: 0;
+				border-right: 3px solid black;
+				cursor: pointer;
+				transition:
+					background-color 0.3s ease,
+					color 0.3s ease;
+				text-transform: capitalize;
+
+				&:last-child {
+					border-right: 0;
+				}
+
+				&:hover {
+					background: $color--dark-tan;
+				}
+
+				&.active {
+					color: $color--light-tan;
+					background: black;
+				}
+			}
+
+			.aboutPanel[hidden] {
+				display: none;
+			}
+
+			.expItem {
+				margin-bottom: 2rem;
+
+				.exp-name {
+					font-size: 3rem;
+					font-weight: bold;
+				}
+
+				.exp-position,
+				.exp-dates {
+					font-size: 2rem;
+				}
+
+				.exp-duties {
+					font-size: 1.8rem;
+					padding: 0;
+					list-style-position: inside;
+				}
+			}
+
+			.basic-info {
+				font-size: 1.2rem;
+				line-height: 1.5;
+				margin: 1.5rem 0 1rem;
+
+				@include bio-copy(1.75rem);
+			}
+
+			.sig {
+				font-size: 3rem;
+				font-weight: bold;
+				font-style: italic;
+				margin-bottom: 2rem;
+				border-bottom: 2px solid white;
+				padding-bottom: 2rem;
+			}
+
+			.skillHeader {
+				font-size: 4rem;
+				font-weight: bold;
+			}
+
+			.aboutCardSkill {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 2fr));
+				gap: 1rem;
+				font-size: 1.2rem;
+				font-weight: bold;
+
+				.skillDiv {
+					width: auto;
+					float: none;
+					overflow-wrap: anywhere;
+				}
+			}
 		}
 	}
 }

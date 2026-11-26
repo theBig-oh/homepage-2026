@@ -1,7 +1,5 @@
-@use './utils/index' as *;
-
-$color--darker-brown: #3b2b24;
 $color--dark-brown: #6e422d;
+$color--darker-brown: #3b2b24;
 $color--dark-tan: #d4b8ab;
 $color--light-tan: #fff8f5;
 $color--salmon-tan: #ffb896;
@@ -12,16 +10,90 @@ $color--dark-tanned: #948979;
 $color--khaki: #dfd0b8;
 $color--dark-shade-brown: #55433b;
 $color--mocha-brown: #cca290;
+
 $break-sm: 20rem;
 $break-md: 64.0625rem;
 $break-lg: 75rem;
 $break-xl: 90rem;
+
 $nav-height--expanded: 100vh;
 $nav-height--collapsed: 8rem;
 $logo-height--expanded: 40vh;
 $logo-height--collapsed: 4rem;
 $nav-height--mobile--expanded: 100vh;
-$nav-height--mobile--peak: 70vh;
 $nav-height--mobile--collapsed: 8rem;
 $logo-height--mobile--expanded: 10vh;
 $logo-height--mobile--collapsed: 5rem;
+
+$texture-brushed: url('../src/assets/img/brushed-alum-dark.png');
+$panel-shadow:
+	6px 9px 12px 4px rgb(0 0 0),
+	inset -5px -5px 10px black;
+$easing-bounce: linear(
+	0 0%,
+	0 2.27%,
+	0.02 4.53%,
+	0.04 6.8%,
+	0.06 9.07%,
+	0.1 11.33%,
+	0.14 13.6%,
+	0.25 18.15%,
+	0.39 22.7%,
+	0.56 27.25%,
+	0.77 31.8%,
+	1 36.35%,
+	0.89 40.9%,
+	0.85 43.18%,
+	0.81 45.45%,
+	0.79 47.72%,
+	0.77 50%,
+	0.75 52.27%,
+	0.75 54.55%,
+	0.75 56.82%,
+	0.77 59.1%,
+	0.79 61.38%,
+	0.81 63.65%,
+	0.85 65.93%,
+	0.89 68.2%,
+	1 72.7%,
+	0.97 74.98%,
+	0.95 77.25%,
+	0.94 79.53%,
+	0.94 81.8%,
+	0.94 84.08%,
+	0.95 86.35%,
+	0.97 88.63%,
+	1 90.9%,
+	0.99 93.18%,
+	0.98 95.45%,
+	0.99 97.73%,
+	1 100%
+);
+
+@function fluid($min, $max, $rate) {
+	@return clamp($min, calc((100vw - 499px) * #{$rate}), $max);
+}
+
+@mixin brushed-texture($z: null, $radius: null) {
+	&::before {
+		content: ' ';
+		display: block;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-image: $texture-brushed;
+		background-size: auto;
+		background-position: center;
+		transform: scaleX(-1);
+
+		@if $z {
+			z-index: $z;
+		}
+
+		@if $radius {
+			border-radius: $radius;
+		}
+	}
+}

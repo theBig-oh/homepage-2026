@@ -20,10 +20,9 @@
 
 	&.scrolled {
 		height: $nav-height--mobile--collapsed;
-		transition: 0.3s ease forwards;
 		border-bottom: 5px solid rgb(0 0 0 / 100%);
-		background-color: #fff8f5;
-		background-image: url('../src/assets/img/brushed-alum-dark.png');
+		background-color: $color--light-tan;
+		background-image: $texture-brushed;
 	}
 
 	&.aboutInView {
@@ -36,7 +35,6 @@
 
 		&.scrolled {
 			height: min-content;
-			animation: none;
 			border-bottom: 0;
 		}
 	}
@@ -45,7 +43,6 @@
 .site-logo,
 .pageItem a {
 	display: flex;
-
 	align-items: center;
 }
 
@@ -88,16 +85,10 @@
 	.scrolled & {
 		--nav-height: #{$nav-height--mobile--collapsed};
 		--logo-height: #{$logo-height--mobile--collapsed};
-		margin: none;
-		display: flex;
-		flex-direction: row;
 	}
 
 	@media (min-width: $break-md) {
-		.scrolled &,
-		& {
-			display: none;
-		}
+		display: none;
 	}
 }
 
@@ -156,8 +147,6 @@
 
 		.scrolled & {
 			font-size: min(3rem, 3vw);
-
-			border: 0;
 		}
 	}
 

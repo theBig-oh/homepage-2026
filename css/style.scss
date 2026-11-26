@@ -10,7 +10,7 @@
 $parallax-shift: 100vh;
 
 body {
-	background-color: #3b322e;
+	background-color: $color--slate-black;
 
 	&::before {
 		content: '';
@@ -47,16 +47,14 @@ body {
 	width: 100%;
 	flex-wrap: wrap;
 	position: relative;
-	background-color: #fff8f5;
-	background-image: url('../src/assets/img/brushed-alum-dark.png');
 	height: 100vh;
 
 	.bodyItems {
 		font-family: 'DM Serif Display', serif;
 		width: 100%;
 		height: fit-content;
-		background-color: #fff8f5;
-		background-image: url('../src/assets/img/brushed-alum-dark.png');
+		background-color: $color--light-tan;
+		background-image: $texture-brushed;
 
 		@media (min-width: $break-md) {
 			height: 100vh;

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
   MakeElements --- 
@@ -14,41 +14,39 @@
 
 */
 
- 
-function MakeElement(){     
-  this.createEle = function(type,name,gridsize,custom) {
-    let newElement = document.createElement(type); 
-        newElement.id = name;
-    
-    let classStuff = ['noPadding']; 
+function MakeElement() {
+	this.createEle = function (type, name, gridsize, custom) {
+		const newElement = document.createElement(type);
+		newElement.id = name;
 
-    if(Array.isArray(custom)) {
-      custom.forEach(function(clas){
-        classStuff.push(clas);
-      })
-    } else {
-      classStuff.push(custom);
-    }
+		const classStuff = ['noPadding'];
 
-    if (gridsize) {
+		if (Array.isArray(custom)) {
+			custom.forEach(function (clas) {
+				classStuff.push(clas);
+			});
+		} else {
+			classStuff.push(custom);
+		}
 
-      gridsize.forEach(function(siz,i){
-        let multiSize = ['xs','sm','md','lg'];
-        if(parseInt(siz) == 0) {
-          classStuff.push(`hidden-${multiSize[i]}`);
-        } else {
-          classStuff.push(`col-${multiSize[i]}-${siz}`);
-        }
-      })
-    } else {
-      classStuff.push('noBootstrap');
-    }
+		if (gridsize) {
+			gridsize.forEach(function (siz, i) {
+				const multiSize = ['xs', 'sm', 'md', 'lg'];
+				if (parseInt(siz) == 0) {
+					classStuff.push(`hidden-${multiSize[i]}`);
+				} else {
+					classStuff.push(`col-${multiSize[i]}-${siz}`);
+				}
+			});
+		} else {
+			classStuff.push('noBootstrap');
+		}
 
-    classStuff.forEach(function(clas){
-      newElement.classList.add(clas);
-    }); 
-    return newElement;
-  }
+		classStuff.forEach(function (clas) {
+			newElement.classList.add(clas);
+		});
+		return newElement;
+	};
 }
 
 export default MakeElement;

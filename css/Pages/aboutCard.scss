@@ -78,6 +78,7 @@
 				flex-wrap: wrap;
 				text-align: center;
 				margin-top: 2rem;
+
 				span {
 					width: 100%;
 				}
@@ -101,7 +102,7 @@
 				aspect-ratio: 3/4;
 				object-fit: cover;
 				border: 4px solid black;
-				box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+				box-shadow: 0 0 0 0 rgb(0 0 0 / 50%);
 				transition: all 0.5s ease;
 				opacity: 0;
 			}
@@ -247,6 +248,7 @@
 			max-width: 1400px;
 			padding-block: 2rem;
 		}
+
 		.aboutCardLeft {
 			grid-area: left;
 			border-right: 3px solid $color--light-tan;
@@ -360,17 +362,14 @@
 		}
 
 		.aboutCard--bio {
-			display: grid;
 			grid-template-areas:
 				'bio pic'
 				'skill pic';
-			flex-direction: column;
 			font-size: 2rem;
 			padding: clamp(1.5rem, calc((100vw - 499px) * 0.076), 4rem);
 
 			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
+			flex-flow: row wrap;
 
 			.aboutSelfContain {
 				grid-area: pic;
@@ -389,10 +388,10 @@
 			&--text {
 				width: 50%;
 			}
+
 			.basic-info {
 				display: flex;
-				flex-direction: column;
-				flex-wrap: wrap;
+				flex-flow: column wrap;
 				grid-area: bio;
 
 				p {
@@ -407,6 +406,7 @@
 						}
 					}
 				}
+
 				.sig {
 					font-size: 3rem;
 					font-weight: bold;
@@ -416,8 +416,7 @@
 
 			.aboutSkillContain {
 				display: flex;
-				flex-direction: row;
-				flex-wrap: wrap;
+				flex-flow: row wrap;
 				justify-content: flex-start;
 				width: 600px;
 				max-width: 100%;
@@ -441,8 +440,7 @@
 			justify-content: center;
 			align-items: center;
 			margin-left: 2rem;
-			flex-direction: row;
-			flex-wrap: wrap;
+			flex-flow: row wrap;
 			row-gap: 2rem;
 			flex: 1 1 auto;
 			min-width: 0;
@@ -459,9 +457,9 @@
 				border-radius: 4px;
 				position: relative;
 				z-index: 1;
-				box-shadow: 6px 9px 12px 4px rgb(0, 0, 0);
+				box-shadow: 6px 9px 12px 4px rgb(0 0 0);
 
-				@media (max-width: 1399px) {
+				@media (width <= 1399px) {
 					height: auto;
 					max-height: none;
 					align-self: stretch;
@@ -501,155 +499,12 @@
 				}
 
 				&-duties {
-					background: rgba(0, 0, 0, 0.2);
+					background: rgb(0 0 0 / 20%);
 					font-size: clamp(0.9rem, calc((100vw - 499px) * 0.0267), 1.5rem);
 					padding: clamp(0.75rem, calc((100vw - 499px) * 0.0267), 1.5rem);
 					list-style-position: inside;
 					border-radius: 4px;
 					font-family: 'Hammersmith One', sans-serif;
-				}
-			}
-		}
-
-		.aboutCard--projects {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
-			.projectItemContainer {
-				display: flex;
-				flex-wrap: wrap;
-				overflow: hidden;
-				position: relative;
-				width: 100%;
-				height: 100%;
-				justify-content: center;
-			}
-
-			.aboutCard--projectSectionSelector {
-				order: 0;
-				display: flex;
-				justify-content: space-evenly;
-				font-size: 2rem;
-				font-weight: bold;
-				width: 100%;
-				min-width: 1000px;
-				text-align: center;
-				background: #8b8888;
-
-				.projectItemTab {
-					width: 100%;
-					padding: 1rem;
-
-					&:hover {
-						cursor: pointer;
-						background: rgba(0, 0, 0, 0.75);
-					}
-
-					&.activeProject {
-						background: white;
-						color: black;
-						position: relative;
-
-						&:before {
-							content: ' ';
-							position: absolute;
-							top: -2px;
-							left: 0;
-							width: 100%;
-							height: 110%;
-							background: white;
-							z-index: 0;
-						}
-
-						.projectTab--name {
-							position: absolute;
-							left: 0;
-							right: 0;
-							z-index: 1;
-						}
-					}
-				}
-			}
-
-			.projectItem {
-				width: 100%;
-				max-width: 1000px;
-				margin: 1rem;
-				height: 100%;
-				border-bottom: 5px solid $color--light-tan;
-				border-right: 3px solid $color--light-tan;
-				background: #8b8888;
-				opacity: 0;
-				transition: all 0.4s ease;
-				position: absolute;
-				top: 0;
-				padding: 1rem;
-				display: grid;
-				grid-template-areas:
-					'image title'
-					'image frame'
-					'info info'
-					'info info'
-					'link link';
-				z-index: -10;
-				gap: 20px;
-
-				&.activeProject {
-					opacity: 1;
-					z-index: 10;
-				}
-			}
-
-			.project {
-				&-image {
-					width: 100%;
-					max-height: 420px;
-					grid-area: image;
-				}
-
-				&-name {
-					font-size: 3rem;
-					grid-area: title;
-					text-align: right;
-					width: 200px;
-					justify-self: end;
-					font-weight: bold;
-					word-break: break-word;
-				}
-
-				&-framework {
-					font-weight: bold;
-					font-style: italic;
-					font-size: 3rem;
-					grid-area: frame;
-					width: 200px;
-					justify-self: end;
-				}
-
-				&-purpose {
-					background: rgba(0, 0, 0, 0.2);
-					padding: 1.5rem;
-					list-style-position: inside;
-					border-radius: 4px;
-					grid-area: info;
-				}
-
-				&-link {
-					border: 1px solid black;
-					padding: 1rem 2rem;
-					background: black;
-					color: $color--light-tan;
-					font-size: 2rem;
-					border-radius: 10px;
-					align-self: center;
-					grid-area: link;
-
-					&:hover {
-						background: $color--light-tan;
-						color: black;
-						cursor: hover;
-					}
 				}
 			}
 		}

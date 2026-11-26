@@ -9,13 +9,23 @@ import ghostPic8 from '../assets/ghost/Ghost-pic-8.webp';
 import ghostPic9 from '../assets/ghost/Ghost-pic-9.webp';
 
 // Pool of pictures. Each press picks randomly: 4 on desktop (one per corner), 1 on mobile
-const GHOST_PICS = [ghostPic1, ghostPic2, ghostPic3, ghostPic4, ghostPic5, ghostPic6, ghostPic7, ghostPic8, ghostPic9];
+const GHOST_PICS = [
+	ghostPic1,
+	ghostPic2,
+	ghostPic3,
+	ghostPic4,
+	ghostPic5,
+	ghostPic6,
+	ghostPic7,
+	ghostPic8,
+	ghostPic9,
+];
 const DESKTOP_COUNT = 4;
 
 const VISIBLE_MS = 3000; // how long the pictures stay on screen before fading
-const FADE_MS = 500;     // keep in sync with the opacity transition in ghostOverlay.scss
-const SLIDE_MS = 600;    // keep in sync with the transform transition in ghostOverlay.scss
-const STAGGER_MS = 300;  // gap between each picture starting its slide
+const FADE_MS = 500; // keep in sync with the opacity transition in ghostOverlay.scss
+const SLIDE_MS = 600; // keep in sync with the transform transition in ghostOverlay.scss
+const STAGGER_MS = 300; // gap between each picture starting its slide
 const SLIDE_ORDER = [0, 1, 3, 2]; // corner slot -> slide position: top-left, top-right, bottom-right, bottom-left (slots: TL, TR, BL, BR)
 const desktopQuery = window.matchMedia('(min-width: 64.0625rem)'); // same as $break-md
 
@@ -49,7 +59,9 @@ const pickPics = () => {
 	if (desktopQuery.matches) {
 		const chosen = shuffled.slice(0, DESKTOP_COUNT);
 
-		chosen.forEach((img, slot) => { img.dataset.slot = slot; });
+		chosen.forEach((img, slot) => {
+			img.dataset.slot = slot;
+		});
 
 		return chosen;
 	}
@@ -73,7 +85,9 @@ export function showGhostOverlay() {
 		img.classList.add('show');
 
 		// Desktop: pictures slide in one after another (clockwise from top-left)
-		img.style.transitionDelay = isDesktop ? `${SLIDE_ORDER[img.dataset.slot] * STAGGER_MS}ms` : '';
+		img.style.transitionDelay = isDesktop
+			? `${SLIDE_ORDER[img.dataset.slot] * STAGGER_MS}ms`
+			: '';
 	});
 
 	// Flush layout so the pictures start from their offscreen position and actually transition
@@ -94,7 +108,7 @@ export function showGhostOverlay() {
 			setTimeout(() => {
 				shown.forEach((img) => {
 					img.classList.remove('show', 'in');
-						delete img.dataset.slot;
+					delete img.dataset.slot;
 					img.style.transitionDelay = '';
 				});
 				isActive = false;

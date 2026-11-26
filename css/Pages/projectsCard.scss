@@ -7,6 +7,7 @@
 
 	@media (min-width: $break-md) {
 		overflow-x: clip;
+
 		&.bodyItems.noPadding {
 			height: auto;
 			justify-content: center;
@@ -23,8 +24,6 @@
 			transition: all 0.5s ease;
 		}
 
-		&.scrolling .title {
-		}
 
 		@media (min-width: $break-md) {
 			max-width: 1400px;
@@ -57,14 +56,14 @@
 			'link';
 
 		background-color: $color--dark-shade-brown;
-		margin: auto auto 3rem auto;
+		margin: auto auto 3rem;
 		color: white;
-		box-shadow: 6px 9px 12px 4px rgb(0, 0, 0);
+		box-shadow: 6px 9px 12px 4px rgb(0 0 0);
 		position: relative;
 		z-index: 1;
 		border-radius: 4px;
 
-		&:before {
+		&::before {
 			content: ' ';
 			display: block;
 			height: 100%;
@@ -111,12 +110,11 @@
 			grid-area: name;
 
 			@media (min-width: $break-md) {
-				align-self: flow-end;
+				place-self: flow-end flex-end;
 				border-bottom: 3px solid white;
 				font-size: 3rem;
 				max-width: 280px;
 				width: 100%;
-				justify-self: flex-end;
 			}
 		}
 
@@ -167,9 +165,8 @@
 			padding: 0.8rem 1rem;
 			background: black;
 			grid-area: link;
-			align-self: flex-end;
+			place-self: flex-end center;
 			width: 200px;
-			justify-self: center;
 			text-align: center;
 			font-size: 3rem;
 

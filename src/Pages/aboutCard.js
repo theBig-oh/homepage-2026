@@ -2,33 +2,34 @@ import MakeElement from '../Tools/MakeElement.js';
 import facePic from '../assets/img/bw-face.webp';
 import selfPic from '../assets/img/self.webp';
 
-const makeEle = new MakeElement;
+const makeEle = new MakeElement();
 
 const tabs = {
-	'mobile': ['bio','exp'],
-	'desktop': ['bio','exp']
+	mobile: ['bio', 'exp'],
+	desktop: ['bio', 'exp'],
 };
-
 
 function aboutTabClickFunction(dest) {
 	document.querySelectorAll('.aboutCard--tab-content').forEach((tabbed) => {
 		tabbed.classList.remove('active');
 		tabbed.classList.add('hidden');
-	})
+	});
 
 	document.querySelectorAll('.aboutTab').forEach((tabLink) => {
-		tabLink.classList.toggle('active', tabLink.classList.contains('aboutTab_'+dest));
-	})
+		tabLink.classList.toggle(
+			'active',
+			tabLink.classList.contains('aboutTab_' + dest),
+		);
+	});
 
-	const target = document.querySelector('.aboutCard--'+dest);
+	const target = document.querySelector('.aboutCard--' + dest);
 
 	target.classList.remove('hidden');
 	target.classList.add('active');
 }
 
-// Bio copytext: write your paragraph(s) about yourself here
 const BIO_COPY = `<p>NYC-raised front end developer who builds things for the web, 
-					and lately for smart glasses. When I\'m not coding I\'m probably playing guitar, 
+					and lately for smart glasses. When I'm not coding I'm probably playing guitar, 
 					hunting down good food, or being upstaged by my dog, who has his own fan club.</p>
 				  <p>I've been programming professionally since 2017, and been involved in tech most of my life. I can program
 					a computer, or build you a custom one for any purpose.</p>
@@ -39,48 +40,98 @@ const BIO_COPY = `<p>NYC-raised front end developer who builds things for the we
 				`;
 
 export function AboutCardDesktop(data, work, projects) {
-	const aboutCardDesktop = makeEle.createEle('div','About-Desktop',[0,0,12,12],['bodyContainerItem','aboutCardContainer','bodyItems','aboutCard','aboutCardDesktop']);
+	const aboutCardDesktop = makeEle.createEle(
+		'div',
+		'About-Desktop',
+		[0, 0, 12, 12],
+		[
+			'bodyContainerItem',
+			'aboutCardContainer',
+			'bodyItems',
+			'aboutCard',
+			'aboutCardDesktop',
+		],
+	);
 
-	// Structure
-	let aboutCardContent = makeEle.createEle('div','AboutCardContent',[0,0,12,12],['aboutCardContent']);
-	let aboutCardTabs = makeEle.createEle('div','AboutCardTabs',[0,0,12,12],['aboutCardTabs']);
-	let aboutCardLeft = makeEle.createEle('div','AboutCardLeft',null,['aboutCardLeft']);
-	let aboutCardRight = makeEle.createEle('div','AboutCardRight',null,['aboutCardRight']);
+	const aboutCardContent = makeEle.createEle(
+		'div',
+		'AboutCardContent',
+		[0, 0, 12, 12],
+		['aboutCardContent'],
+	);
+	const aboutCardTabs = makeEle.createEle(
+		'div',
+		'AboutCardTabs',
+		[0, 0, 12, 12],
+		['aboutCardTabs'],
+	);
+	const aboutCardLeft = makeEle.createEle('div', 'AboutCardLeft', null, [
+		'aboutCardLeft',
+	]);
+	const aboutCardRight = makeEle.createEle('div', 'AboutCardRight', null, [
+		'aboutCardRight',
+	]);
 
-	//Content
-
-
-	//Portrait - Desktop
-	let aboutCardPortrait = makeEle.createEle('div','AboutCardPortrait',[0,0,12,12],['aboutCard--portrait']);
-	let aboutCardPortraitImage = makeEle.createEle('img','AboutCard--port-img',[12,12,12,12],['aboutCard--img','aboutCardPortrait--item']);
-	let aboutCardPortraitName = makeEle.createEle('div', 'AboutCard--port-name',[12,12,12,12],['aboutCard--port-name','aboutCardPortrait--item']);
+	const aboutCardPortrait = makeEle.createEle(
+		'div',
+		'AboutCardPortrait',
+		[0, 0, 12, 12],
+		['aboutCard--portrait'],
+	);
+	const aboutCardPortraitImage = makeEle.createEle(
+		'img',
+		'AboutCard--port-img',
+		[12, 12, 12, 12],
+		['aboutCard--img', 'aboutCardPortrait--item'],
+	);
+	const aboutCardPortraitName = makeEle.createEle(
+		'div',
+		'AboutCard--port-name',
+		[12, 12, 12, 12],
+		['aboutCard--port-name', 'aboutCardPortrait--item'],
+	);
 
 	aboutCardPortraitImage.src = facePic;
 	aboutCardPortraitName.innerHTML = `<h2> Oscar Medrano </h2>`;
 
 	aboutCardPortrait.append(aboutCardPortraitName, aboutCardPortraitImage);
 
-	//Tabs
 	tabs.desktop.forEach((tab, i) => {
-
-		let aboutTabLink = makeEle.createEle('div','aboutTab_'+i,null,['aboutTab','aboutTab_'+tab]);
+		const aboutTabLink = makeEle.createEle('div', 'aboutTab_' + i, null, [
+			'aboutTab',
+			'aboutTab_' + tab,
+		]);
 		aboutTabLink.innerHTML = `${tab}`;
 
-		aboutTabLink.addEventListener('click', function(e) {
+		aboutTabLink.addEventListener('click', function (e) {
 			aboutTabClickFunction(tab);
-		})
+		});
 
 		aboutCardTabs.append(aboutTabLink);
-	})
+	});
 
-
-	//Bio section
-	let aboutCardBioSection = makeEle.createEle('div','aboutBio',null,['aboutCard--bio','bio','aboutCard--tab-content']);
-	let aboutCardBioText = makeEle.createEle('div','aboutBio--content',null,['aboutCard--bio--text','aboutCard--bio-content']);
-	let aboutCardBioSkills = makeEle.createEle('div','aboutBio--skills',null,['aboutCard--bio--skills','aboutCard--bio-content']);
-	let aboutSkillContain = makeEle.createEle('div','aboutSkillContain',null,['aboutSkillContain']);
-	let aboutSelfContain = makeEle.createEle('div', 'aboutSelfContain',null,['aboutSelfContain']);
-	let aboutSelfPic = makeEle.createEle('img','aboutSelfPic',null,['aboutSelfPic']);
+	const aboutCardBioSection = makeEle.createEle('div', 'aboutBio', null, [
+		'aboutCard--bio',
+		'bio',
+		'aboutCard--tab-content',
+	]);
+	const aboutCardBioText = makeEle.createEle('div', 'aboutBio--content', null, [
+		'aboutCard--bio--text',
+		'aboutCard--bio-content',
+	]);
+	const aboutCardBioSkills = makeEle.createEle('div', 'aboutBio--skills', null, [
+		'aboutCard--bio--skills',
+		'aboutCard--bio-content',
+	]);
+	const aboutSkillContain = makeEle.createEle('div', 'aboutSkillContain', null, [
+		'aboutSkillContain',
+	]);
+	const aboutSelfContain = makeEle.createEle('div', 'aboutSelfContain', null, [
+		'aboutSelfContain',
+	]);
+	const aboutSelfPic = makeEle.createEle('img', 'aboutSelfPic', null, [
+		'aboutSelfPic',
+	]);
 
 	aboutCardBioText.innerHTML = `
 		<div class="basic-info">
@@ -90,7 +141,10 @@ export function AboutCardDesktop(data, work, projects) {
 
 	aboutCardBioSkills.innerHTML = `<h3> Skills: </h3>`;
 	data.skillSet.forEach((skill, i) => {
-		let skillDiv = makeEle.createEle('div','skillDiv_'+i,null,['skillDiv','skillDiv_'+i]);
+		const skillDiv = makeEle.createEle('div', 'skillDiv_' + i, null, [
+			'skillDiv',
+			'skillDiv_' + i,
+		]);
 
 		skillDiv.innerHTML = `
 			<span class="skillIcon">${skill.icon || ''}</span>
@@ -98,20 +152,31 @@ export function AboutCardDesktop(data, work, projects) {
 		`;
 
 		aboutSkillContain.append(skillDiv.cloneNode(true));
-	})
+	});
 
 	aboutSelfPic.src = selfPic;
 	aboutCardBioSkills.append(aboutSkillContain);
 
 	aboutSelfContain.append(aboutSelfPic);
-	aboutCardBioSection.append(aboutCardBioText, aboutSelfContain, aboutCardBioSkills);
+	aboutCardBioSection.append(
+		aboutCardBioText,
+		aboutSelfContain,
+		aboutCardBioSkills,
+	);
 
-	//Exp section
-	let aboutCardExpSection = makeEle.createEle('div','aboutExp',[0,0,12,12],['aboutCard--exp','exp','aboutCard--tab-content']);
+	const aboutCardExpSection = makeEle.createEle(
+		'div',
+		'aboutExp',
+		[0, 0, 12, 12],
+		['aboutCard--exp', 'exp', 'aboutCard--tab-content'],
+	);
 
 	(work || []).forEach((job, i) => {
-		let workJob = makeEle.createEle('div','aboutWork-job-'+i,null,['aboutCard--exp--work-job','job-site']);
-		let dates = `${job.startDate} - ${job.isPresent ? 'Present' : job.endDate}`;
+		const workJob = makeEle.createEle('div', 'aboutWork-job-' + i, null, [
+			'aboutCard--exp--work-job',
+			'job-site',
+		]);
+		const dates = `${job.startDate} - ${job.isPresent ? 'Present' : job.endDate}`;
 
 		workJob.innerHTML = `
 			<h3 class="exp-name">${job.name}</h3>
@@ -121,40 +186,60 @@ export function AboutCardDesktop(data, work, projects) {
 		`;
 
 		aboutCardExpSection.append(workJob.cloneNode(true));
-	})
+	});
 
-	//Projects section
-	let aboutCardProjectsSection = makeEle.createEle('div','aboutProjects',[0,0,12,12],['aboutCard--projects','projects','aboutCard--tab-content']);
+	const aboutCardProjectsSection = makeEle.createEle(
+		'div',
+		'aboutProjects',
+		[0, 0, 12, 12],
+		['aboutCard--projects', 'projects', 'aboutCard--tab-content'],
+	);
 
-	let aboutCardProjectTabSelector = makeEle.createEle('div','aboutProjectsSelector', [0,0,12,12],['aboutCard--project--selector', 'aboutCard--projectSectionSelector']);
-	let projectItemContainer = makeEle.createEle('div', 'projectItemContainer', null, ['projectItemContainer']);
-
-
+	const aboutCardProjectTabSelector = makeEle.createEle(
+		'div',
+		'aboutProjectsSelector',
+		[0, 0, 12, 12],
+		['aboutCard--project--selector', 'aboutCard--projectSectionSelector'],
+	);
+	const projectItemContainer = makeEle.createEle(
+		'div',
+		'projectItemContainer',
+		null,
+		['projectItemContainer'],
+	);
 
 	(projects || []).forEach((project, i) => {
-		let projectNavItem = makeEle.createEle('div', 'projectItemTab_'+i, null, ['projectItemTab','aboutCard--projectSectionSelector--tab','aboutCard--projectSectionSelector--'+project.codeName, 'projectItemTab__'+project.codeName]);
-		let projectItem = makeEle.createEle('div','projectItem_'+i, null,['projectItem', 'projectItem__'+project.codeName]);
+		const projectNavItem = makeEle.createEle('div', 'projectItemTab_' + i, null, [
+			'projectItemTab',
+			'aboutCard--projectSectionSelector--tab',
+			'aboutCard--projectSectionSelector--' + project.codeName,
+			'projectItemTab__' + project.codeName,
+		]);
+		const projectItem = makeEle.createEle('div', 'projectItem_' + i, null, [
+			'projectItem',
+			'projectItem__' + project.codeName,
+		]);
 
 		projectNavItem.innerHTML = `
 			<div class="projectTab--name"> ${project.name} </div>
 		`;
 
-		projectNavItem.addEventListener('click', function(e) {
+		projectNavItem.addEventListener('click', function (e) {
 			document.querySelectorAll('.projectItemTab').forEach((item) => {
 				item.classList.remove('activeProject');
 
-				if (item.classList.contains('projectItemTab__'+project.codeName)) {
+				if (item.classList.contains('projectItemTab__' + project.codeName)) {
 					item.classList.add('activeProject');
 				}
-			})
+			});
 			document.querySelectorAll('.projectItem').forEach((item) => {
 				item.classList.remove('activeProject');
 
-				if (item.classList.contains('projectItem__'+project.codeName)) {
+				if (item.classList.contains('projectItem__' + project.codeName)) {
 					item.classList.add('activeProject');
 				}
-			})
-		})
+			});
+		});
 
 		if (i == 0) {
 			projectItem.classList.add('activeProject');
@@ -175,62 +260,104 @@ export function AboutCardDesktop(data, work, projects) {
 		projectItemContainer.append(projectItem);
 	});
 
-	projectItemContainer
-	aboutCardProjectsSection.append(aboutCardProjectTabSelector, projectItemContainer);
+	projectItemContainer;
+	aboutCardProjectsSection.append(
+		aboutCardProjectTabSelector,
+		projectItemContainer,
+	);
 
-	//Putting everything together now
 	aboutCardLeft.append(aboutCardPortrait, aboutCardTabs);
-	aboutCardRight.append(aboutCardBioSection, aboutCardExpSection)
+	aboutCardRight.append(aboutCardBioSection, aboutCardExpSection);
 	aboutCardContent.append(aboutCardLeft, aboutCardRight);
 
 	aboutCardDesktop.append(aboutCardContent);
 
-
-	//Animations 
 	const MAX_OFFSET = 150;
-	const speed = 0.5;  // anything less than 1 slows the drift
+	const speed = 0.5;
 
 	const onScroll = () => {
 		const progress = Math.min(window.scrollY * speed, MAX_OFFSET);
 
-		// Starts MAX_OFFSET px above its resting spot and drifts down to 0
 		aboutCardPortraitName.style.transform = `translateY(${progress - MAX_OFFSET}px)`;
-		// On only once the drift has finished (hit MAX_OFFSET); off again when it backs off
 		aboutCardPortraitName.classList.toggle('scrolling', progress >= MAX_OFFSET);
-	}
+	};
 
-	window.addEventListener('scroll', onScroll, {passive:true});
-	onScroll(); // set correct state on load (e.g. refresh mid-scroll)
+	window.addEventListener('scroll', onScroll, { passive: true });
+	onScroll();
 
-	// Project Tab clicks
+	const projectTabs = document.querySelectorAll('.projectItemTab');
 
-	let projectTabs = document.querySelectorAll('.projectItemTab');
-
-
-	// Initial state: Bio shown, others hidden (elements aren't in the DOM yet, so set classes directly)
-	[aboutCardBioSection, aboutCardExpSection, aboutCardProjectsSection].forEach((section, i) => {
-		section.classList.toggle('hidden', i !== 0);
-		section.classList.toggle('active', i === 0);
-	});
+	[aboutCardBioSection, aboutCardExpSection, aboutCardProjectsSection].forEach(
+		(section, i) => {
+			section.classList.toggle('hidden', i !== 0);
+			section.classList.toggle('active', i === 0);
+		},
+	);
 	aboutCardTabs.firstElementChild.classList.add('active');
 
 	return aboutCardDesktop;
 }
 
-
-
 export function AboutCardMobile(data, work) {
-
-	let aboutCard = makeEle.createEle('div','About',[12,12,12,12],['bodyContainerItem','aboutCardContainer','bodyItems','aboutCard', 'aboutCardMobile']);
-	let aboutCardContent = makeEle.createEle('div','aboutCardContent',[12,12,12,12],['aboutCardContent','aboutCardContainerContent']);
-	let aboutCardName = makeEle.createEle('div','aboutCardName',[12,12,6,6],['aboutCardName','aboutCardInnerContent']);
-	let aboutCardInfo = makeEle.createEle('div','aboutCardInfo', [12,12,6,6],['aboutCardInfo','aboutCardInnerContent']);
-	let aboutCardSkill = makeEle.createEle('div','aboutCardSkill',[12,12,12,12],['aboutCardSkill','aboutCardInnerContent']);
-	let aboutCardPortrait = makeEle.createEle('div','aboutCardPortrait',[12,12,6,6],['aboutCardPortrait','aboutCardInnerContent']);
-	let aboutCardSwitch = makeEle.createEle('div','aboutCardSwitch',null,['aboutCardSwitch']);
-	let aboutCardBio = makeEle.createEle('div','aboutCardBio',null,['aboutPanel','aboutCardBio']);
-	let aboutCardExp = makeEle.createEle('div','aboutCardExp',null,['aboutPanel','aboutCardExp']);
-	let aboutCardNameTitle = makeEle.createEle('div','aboutCardNameTitle', [12,12,12,12],['aboutCardNameTitle']);
+	const aboutCard = makeEle.createEle(
+		'div',
+		'About',
+		[12, 12, 12, 12],
+		[
+			'bodyContainerItem',
+			'aboutCardContainer',
+			'bodyItems',
+			'aboutCard',
+			'aboutCardMobile',
+		],
+	);
+	const aboutCardContent = makeEle.createEle(
+		'div',
+		'aboutCardContent',
+		[12, 12, 12, 12],
+		['aboutCardContent', 'aboutCardContainerContent'],
+	);
+	const aboutCardName = makeEle.createEle(
+		'div',
+		'aboutCardName',
+		[12, 12, 6, 6],
+		['aboutCardName', 'aboutCardInnerContent'],
+	);
+	const aboutCardInfo = makeEle.createEle(
+		'div',
+		'aboutCardInfo',
+		[12, 12, 6, 6],
+		['aboutCardInfo', 'aboutCardInnerContent'],
+	);
+	const aboutCardSkill = makeEle.createEle(
+		'div',
+		'aboutCardSkill',
+		[12, 12, 12, 12],
+		['aboutCardSkill', 'aboutCardInnerContent'],
+	);
+	const aboutCardPortrait = makeEle.createEle(
+		'div',
+		'aboutCardPortrait',
+		[12, 12, 6, 6],
+		['aboutCardPortrait', 'aboutCardInnerContent'],
+	);
+	const aboutCardSwitch = makeEle.createEle('div', 'aboutCardSwitch', null, [
+		'aboutCardSwitch',
+	]);
+	const aboutCardBio = makeEle.createEle('div', 'aboutCardBio', null, [
+		'aboutPanel',
+		'aboutCardBio',
+	]);
+	const aboutCardExp = makeEle.createEle('div', 'aboutCardExp', null, [
+		'aboutPanel',
+		'aboutCardExp',
+	]);
+	const aboutCardNameTitle = makeEle.createEle(
+		'div',
+		'aboutCardNameTitle',
+		[12, 12, 12, 12],
+		['aboutCardNameTitle'],
+	);
 
 	aboutCardNameTitle.innerHTML = `			
 			<div class="basic-title">
@@ -243,7 +370,12 @@ export function AboutCardMobile(data, work) {
 	console.log(data.skillSet);
 
 	data.skillSet.forEach((skill, i) => {
-		let skillDiv = makeEle.createEle('div','skillDiv_'+i,[12,12,12,12],['skillDiv','skillDiv_'+i]);
+		const skillDiv = makeEle.createEle(
+			'div',
+			'skillDiv_' + i,
+			[12, 12, 12, 12],
+			['skillDiv', 'skillDiv_' + i],
+		);
 
 		skillDiv.innerHTML = `
 			<span class="skillIcon">${skill.icon || ''}</span>
@@ -251,12 +383,11 @@ export function AboutCardMobile(data, work) {
 		`;
 
 		aboutCardSkill.append(skillDiv.cloneNode(true));
-	})
+	});
 
 	aboutCardName.append(aboutCardPortrait);
 
-
-	aboutCardName.innerHTML = `<div class="name-text"> Oscar Medrano </div>`; // Change to an SVG later
+	aboutCardName.innerHTML = `<div class="name-text"> Oscar Medrano </div>`;
 	aboutCardBio.innerHTML = `
 		<div class="basic-info">
 			<p class="bio-copy">${BIO_COPY}</p>
@@ -267,13 +398,11 @@ export function AboutCardMobile(data, work) {
 
 	`;
 
-	// Skills live inside the Bio panel
 	aboutCardBio.append(aboutCardSkill);
 
-	// Exp panel, built from the work data
 	(work || []).forEach((job) => {
-		let jobDiv = makeEle.createEle('div', null, null, ['expItem']);
-		let dates = `${job.startDate} - ${job.isPresent ? 'Present' : job.endDate}`;
+		const jobDiv = makeEle.createEle('div', null, null, ['expItem']);
+		const dates = `${job.startDate} - ${job.isPresent ? 'Present' : job.endDate}`;
 
 		jobDiv.innerHTML = `
 			<h3 class="exp-name">${job.name}</h3>
@@ -285,7 +414,6 @@ export function AboutCardMobile(data, work) {
 		aboutCardExp.append(jobDiv);
 	});
 
-	// 2 button switch: Bio (copy + skills) / Exp
 	const panels = { bio: aboutCardBio, exp: aboutCardExp };
 	const buttons = {};
 
@@ -321,23 +449,21 @@ export function AboutCardMobile(data, work) {
 	aboutCardName.append(aboutCardPortrait, aboutCardNameTitle);
 
 	const MAX_OFFSET = 150;
-	const speed = 0.5;  // anything less than 1 slows the drift
+	const speed = 0.5;
 
 	const onScroll = () => {
 		const offsetY = Math.min(window.scrollY * speed, MAX_OFFSET);
 
 		aboutCardName.style.transform = `translateY(${offsetY}px)`;
-		// On only once the drift has finished (hit MAX_OFFSET); off again when it backs off
 		aboutCardName.classList.toggle('scrolling', offsetY >= MAX_OFFSET);
-	}
+	};
 
-	window.addEventListener('scroll', onScroll, {passive:true});
-	onScroll(); // set correct state on load (e.g. refresh mid-scroll)
+	window.addEventListener('scroll', onScroll, { passive: true });
+	onScroll();
 
-	aboutCardContent.append(aboutCardName, aboutCardInfo);	
+	aboutCardContent.append(aboutCardName, aboutCardInfo);
 
 	aboutCard.append(aboutCardContent);
 
 	return aboutCard;
-
 }

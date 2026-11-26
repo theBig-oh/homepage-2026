@@ -57,7 +57,8 @@ export default function ProjectsCard(projects) {
 	window.addEventListener('scroll', checkSlideIn, { passive: true });
 	requestAnimationFrame(checkSlideIn);
 
-	const MAX_OFFSET = 150;
+	const MAX_OFFSET = 80;
+	projectCard.style.setProperty('--title-drift', `${MAX_OFFSET}px`);
 	const speed = 0.5;
 
 	const desktopQuery = window.matchMedia('(min-width: 64.0625rem)');
@@ -71,10 +72,9 @@ export default function ProjectsCard(projects) {
 			return;
 		}
 
-		const scrolledIn = Math.max(
-			window.innerHeight - projectCard.getBoundingClientRect().top,
-			0,
-		);
+		const titleInset = parseFloat(getComputedStyle(projectCard).paddingTop);
+		const titleTop = projectCard.getBoundingClientRect().top + titleInset;
+		const scrolledIn = Math.max(window.innerHeight - titleTop, 0);
 		const offsetY = Math.min(scrolledIn * speed, MAX_OFFSET);
 
 		projectTitle.style.transform = `translateY(${offsetY}px)`;

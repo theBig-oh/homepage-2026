@@ -202,6 +202,36 @@
 				font-size: 1.2rem;
 				line-height: 1.5;
 				margin: 1.5rem 0 1rem;
+
+
+				p {
+				     font-size: 1.75rem;
+
+					font-family: 'Hammersmith One', sans-serif;
+
+					&:first-letter {
+							font-family: 'DM Serif Display', serif;
+							font-size: 2.25rem;
+					}
+					span {
+						
+						font-family: 'DM Serif Display', serif;
+						font-size: 2rem;
+						font-weight: bold;
+						letter-spacing: 1.75px;
+						text-transform: capitalize;
+
+						&.hint {
+							opacity: 0;
+							text-transform: none;
+							&:hover {
+							opacity: 1;
+							transition: all 0.4s ease;
+							}
+						}
+					}
+				}
+
 			}
 
 			.sig {
@@ -236,6 +266,10 @@
 
 	&.aboutCardDesktop {
 		justify-content: center;
+		margin-bottom: 25rem;
+		overflow-x: clip;
+		box-shadow: -1px 6px 13px 5px rgb(0 0 0 / 61%);
+		padding-bottom: 10rem;
 
 		@media (min-width: $break-md) {
 			display: flex;
@@ -243,7 +277,8 @@
 
 		.aboutCardContent {
 			display: flex;
-			align-self: center;
+			align-self: flex-start;
+			margin-top: 11vh;
 			width: 100%;
 			max-width: 1400px;
 			padding-block: 2rem;
@@ -257,11 +292,23 @@
 		}
 
 		.aboutCardRight {
-			display: flex;
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
 			grid-area: right;
 			margin-top: 5rem;
 			width: 100%;
 			min-width: 0;
+			overflow-x: clip;
+
+			> .aboutCard--tab-content {
+				grid-area: 1 / 1;
+			}
+
+			> .aboutCard--tab-content.hidden {
+				display: flex !important;
+				visibility: hidden;
+				pointer-events: none;
+			}
 		}
 
 		.aboutCard--portrait {
@@ -365,6 +412,8 @@
 			grid-template-areas:
 				'bio pic'
 				'skill pic';
+			flex: 1 1 auto;
+			min-width: 0;
 			font-size: 2rem;
 			padding: clamp(1.5rem, calc((100vw - 499px) * 0.076), 4rem);
 
@@ -395,22 +444,60 @@
 				grid-area: bio;
 
 				p {
-					font-size: 2.3rem;
+					font-size: 1.5rem;
+					font-family: 'Hammersmith One', sans-serif;
 
+					&:first-letter {
+							font-family: 'DM Serif Display', serif;
+							font-size: 2.25rem;
+					}
 					span {
-						opacity: 0;
+						
+						font-family: 'DM Serif Display', serif;
+						font-size: 2rem;
+						font-weight: bold;
+						letter-spacing: 1.75px;
+						text-transform: capitalize;
 
-						&:hover {
+						&.hint {
+							opacity: 0;
+							text-transform: none;
+							&:hover {
 							opacity: 1;
 							transition: all 0.4s ease;
+							}
 						}
 					}
 				}
 
 				.sig {
+					font-family: revert;
 					font-size: 3rem;
 					font-weight: bold;
 					font-style: italic;
+				}
+
+				@media (min-width: $break-md) {
+					position: relative;
+					padding: 1rem;
+				background-color: $color--slate-black;
+				border-radius: 4px;
+				position: relative;
+				z-index: 1;
+				box-shadow: 6px 9px 12px 4px rgb(0, 0, 0), inset -5px -5px 10px black;
+							&::before {
+					content: ' ';
+					display: block;
+					height: 100%;
+					width: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-image: url('../src/assets/img/brushed-alum-dark.png');
+					background-size: auto;
+					background-position: center;
+					transform: scaleX(-1);
+				}
 				}
 			}
 
@@ -457,7 +544,7 @@
 				border-radius: 4px;
 				position: relative;
 				z-index: 1;
-				box-shadow: 6px 9px 12px 4px rgb(0 0 0);
+				box-shadow: 6px 9px 12px 4px rgb(0, 0, 0), inset -5px -5px 10px black;
 
 				@media (width <= 1399px) {
 					height: auto;
@@ -485,12 +572,14 @@
 					font-size: clamp(1.4rem, calc((100vw - 499px) * 0.0533), 3rem);
 					font-weight: bold;
 					border-bottom: 4px solid white;
+					letter-spacing: 1.5px;
 				}
 
 				&-position {
 					font-size: clamp(1.2rem, calc((100vw - 499px) * 0.0444), 2.5rem);
 					font-weight: bold;
 					font-style: italic;
+					letter-spacing: 1.75px;
 				}
 
 				&-dates {

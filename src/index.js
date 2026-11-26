@@ -4,6 +4,7 @@ import NavBar from './Components/navbar.js';
 import { AboutCardDesktop, AboutCardMobile } from './Pages/aboutCard.js';
 import ProjectsCard from './Pages/projectsCard.js';
 import Footer from './Components/footer.js';
+import Spacer from './Components/spacer.js';
 import Data from './data/data.js';
 
 // Need to move this into a data file.

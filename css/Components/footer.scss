@@ -10,7 +10,8 @@
 	align-items: center;
 	gap: 2rem;
 	padding: 4rem 2rem;
-	border-top: 5px solid black;
+	box-shadow: -1px -6px 20px 2px rgb(0 0 0 / 50%);
+	position: relative;
 
 	.footerTitle .title {
 		font-size: 4rem;

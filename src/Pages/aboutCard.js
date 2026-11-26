@@ -9,11 +9,13 @@ const tabs = {
 	desktop: ['bio', 'exp'],
 };
 
+let tabSwitching = false;
+
 function aboutTabClickFunction(dest) {
-	document.querySelectorAll('.aboutCard--tab-content').forEach((tabbed) => {
-		tabbed.classList.remove('active');
-		tabbed.classList.add('hidden');
-	});
+	const target = document.querySelector('.aboutCard--' + dest);
+	const current = document.querySelector('.aboutCard--tab-content.active');
+
+	if (tabSwitching || !target || target === current) return;
 
 	document.querySelectorAll('.aboutTab').forEach((tabLink) => {
 		tabLink.classList.toggle(
@@ -22,21 +24,63 @@ function aboutTabClickFunction(dest) {
 		);
 	});
 
-	const target = document.querySelector('.aboutCard--' + dest);
+	const show = () => {
+		document.querySelectorAll('.aboutCard--tab-content').forEach((tabbed) => {
+			tabbed.classList.remove('active');
+			tabbed.classList.add('hidden');
+		});
+		target.classList.remove('hidden');
+		target.classList.add('active');
+	};
 
-	target.classList.remove('hidden');
-	target.classList.add('active');
+	const reduceMotion = window.matchMedia(
+		'(prefers-reduced-motion: reduce)',
+	).matches;
+
+	if (!current || reduceMotion) {
+		show();
+		return;
+	}
+
+	// Moving to a later tab: old slides out left, new slides in from the right (and vice versa)
+	const currentIndex = tabs.desktop.findIndex((t) =>
+		current.classList.contains(t),
+	);
+	const direction = tabs.desktop.indexOf(dest) > currentIndex ? 1 : -1;
+
+	tabSwitching = true;
+	current
+		.animate(
+			[
+				{ transform: 'translateX(0)', opacity: 1 },
+				{ transform: `translateX(${-direction * 100}vw)`, opacity: 0 },
+			],
+			{ duration: 300, easing: 'ease-in', fill: 'forwards' },
+		)
+		.finished.then(() => {
+			show();
+			return target.animate(
+				[
+					{ transform: `translateX(${direction * 100}vw)`, opacity: 0 },
+					{ transform: 'translateX(0)', opacity: 1 },
+				],
+				{ duration: 400, easing: 'ease-out' },
+			).finished;
+		})
+		.finally(() => {
+			current.getAnimations().forEach((animation) => animation.cancel());
+			tabSwitching = false;
+		});
 }
 
-const BIO_COPY = `<p>NYC-raised front end developer who builds things for the web, 
-					and lately for smart glasses. When I'm not coding I'm probably playing guitar, 
-					hunting down good food, or being upstaged by my dog, who has his own fan club.</p>
-				  <p>I've been programming professionally since 2017, and been involved in tech most of my life. I can program
-					a computer, or build you a custom one for any purpose.</p>
-					<p>I believe in delivering quality work in a fast turnaround. So let's get in contact and see what we can accomplish together</p>
-					<p> P.S. If you're still reading this, try to find my dog, he's hidden somewhere in this site. --- <span>Hint: The logo</span> </p>
-					</br>
-					<p class="sig">Oscar Medrano</p>
+const BIO_COPY = `<p><span class="intro">NYC-raised front end developer --</span></p>
+<p>I'm <span>Oscar Medrano</span>. For the past 8+ years, I have been building products end to end in Vue, React and TypeScript, mostly for consumer brands like <br/> <span>people</span>, <span>inStyle</span>, <span>the spruce</span> and <span>Food&amp;Wine</span>.</p>
+<p>Not being a stranger to <span>A.I.</span> as it is part of the daily workflow, with <span>claude code</span>, <span>cursor</span>, <span>windsurf</span> and <span>chatGPT</span> in the mix. Most recently, I developed an AI workflow to cut development time by 20% at People Inc.</p>
+<p>Tech has been part of life long before the career started with coding simple IRC scripts at age 10, to building custom PC's and attaining <span> COMPTIA A&plus;</span> certification. Off the clock, it's <span>Music</span>, which explains why half my side projects are music related.</p>
+<p>Quality work and fast turnaround is always a <span>Priority</span>. So let's get in <span>Contact</span> and see what we can accomplish <span>Together</span>.</p>
+<p>P.S. If you're still reading this, try to find my dog, he's hidden somewhere in this site. --- <span class="hint">Hint: The logo</span></p>
+<br>
+<div class="sig">Oscar Medrano</div>
 				`;
 
 export function AboutCardDesktop(data, work, projects) {

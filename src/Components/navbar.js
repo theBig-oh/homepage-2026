@@ -68,6 +68,24 @@ export default function NavBar(siteName, sitePages) {
 
 		navBarContainerBase.classList.toggle('scrolling', y > 0 && y <= threshold);
 		navBarContainerBase.classList.toggle('scrolled', y > threshold);
+
+		// "aboutInView": on once the desktop About card fills at least 90% of what it can show,
+		// and it stays on while scrolling past the card (its bottom edge has reached the
+		// bottom of the viewport or gone above it). It turns off again scrolling back up.
+		// A card taller than the viewport can never be 90% visible by its own height,
+		// so compare against the smaller of its height and the viewport height.
+		const about = document.getElementById('About-Desktop');
+		const rect = about ? about.getBoundingClientRect() : null;
+		let aboutInView = false;
+
+		if (rect && rect.height > 0) {
+			const visible =
+				Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+			const needed = 0.9 * Math.min(rect.height, window.innerHeight);
+			aboutInView = visible >= needed || rect.bottom <= window.innerHeight;
+		}
+
+		navBarContainerBase.classList.toggle('aboutInView', aboutInView);
 	};
 
 	window.addEventListener('scroll', onScroll, { passive: true });

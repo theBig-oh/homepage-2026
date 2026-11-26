@@ -7,6 +7,39 @@
 	}
 }
 
+$parallax-shift: 100vh;
+
+body {
+	background-color: #3b322e;
+
+	&::before {
+		content: '';
+		position: fixed;
+		inset: (-$parallax-shift) 0;
+		z-index: -1;
+		pointer-events: none;
+
+		/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+		background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+	}
+
+	@media (min-width: $break-md) and (prefers-reduced-motion: no-preference) {
+		@supports (animation-timeline: scroll()) {
+			&::before {
+				will-change: transform;
+				animation: body-parallax linear both;
+				animation-timeline: scroll(root);
+			}
+		}
+	}
+}
+
+@keyframes body-parallax {
+	to {
+		transform: translateY(-$parallax-shift);
+	}
+}
+
 .bodyContain {
 	text-align: center;
 

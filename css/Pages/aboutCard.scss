@@ -209,10 +209,11 @@
 
 					font-family: 'Hammersmith One', sans-serif;
 
-					&:first-letter {
+					&::first-letter {
 							font-family: 'DM Serif Display', serif;
 							font-size: 2.25rem;
 					}
+
 					span {
 						
 						font-family: 'DM Serif Display', serif;
@@ -224,6 +225,7 @@
 						&.hint {
 							opacity: 0;
 							text-transform: none;
+
 							&:hover {
 							opacity: 1;
 							transition: all 0.4s ease;
@@ -447,10 +449,11 @@
 					font-size: 1.5rem;
 					font-family: 'Hammersmith One', sans-serif;
 
-					&:first-letter {
+					&::first-letter {
 							font-family: 'DM Serif Display', serif;
 							font-size: 2.25rem;
 					}
+
 					span {
 						
 						font-family: 'DM Serif Display', serif;
@@ -462,6 +465,7 @@
 						&.hint {
 							opacity: 0;
 							text-transform: none;
+
 							&:hover {
 							opacity: 1;
 							transition: all 0.4s ease;
@@ -478,13 +482,13 @@
 				}
 
 				@media (min-width: $break-md) {
-					position: relative;
 					padding: 1rem;
 				background-color: $color--slate-black;
 				border-radius: 4px;
 				position: relative;
 				z-index: 1;
-				box-shadow: 6px 9px 12px 4px rgb(0, 0, 0), inset -5px -5px 10px black;
+				box-shadow: 6px 9px 12px 4px rgb(0 0 0), inset -5px -5px 10px black;
+
 							&::before {
 					content: ' ';
 					display: block;
@@ -544,7 +548,7 @@
 				border-radius: 4px;
 				position: relative;
 				z-index: 1;
-				box-shadow: 6px 9px 12px 4px rgb(0, 0, 0), inset -5px -5px 10px black;
+				box-shadow: 6px 9px 12px 4px rgb(0 0 0), inset -5px -5px 10px black;
 
 				@media (width <= 1399px) {
 					height: auto;

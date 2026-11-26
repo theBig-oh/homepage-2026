@@ -7,7 +7,7 @@
 
 	@media (min-width: $break-md) {
 		overflow-x: clip;
-		box-shadow: 0px -9px 13px 5px rgba(0, 0, 0, 0.61);
+		box-shadow: 0 -9px 13px 5px rgb(0 0 0 / 61%);
 
 		&.bodyItems.noPadding {
 			height: auto;
@@ -59,7 +59,7 @@
 		background-color: $color--dark-shade-brown;
 		margin: auto auto 3rem;
 		color: white;
-		box-shadow: 6px 9px 12px 4px rgb(0, 0, 0), inset -5px -5px 10px black;
+		box-shadow: 6px 9px 12px 4px rgb(0 0 0), inset -5px -5px 10px black;
 		position: relative;
 		z-index: 1;
 		border-radius: 4px;

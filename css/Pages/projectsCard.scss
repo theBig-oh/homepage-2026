@@ -6,7 +6,12 @@
 	padding-top: 5rem;
 
 	@media (min-width: $break-md) {
-		display: none;
+		overflow-x: clip;
+		&.bodyItems.noPadding {
+			height: auto;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 	.projectCardTitle {
@@ -18,45 +23,61 @@
 			transition: all 0.5s ease;
 		}
 
-		// Added once the drift reaches MAX_OFFSET
 		&.scrolling .title {
-			// style the end state here
+		}
+
+		@media (min-width: $break-md) {
+			max-width: 1400px;
 		}
 	}
 
-	// Mobile first: 1 column x 3 rows
 	.projectCardGrid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 2rem;
 
-
-		// 3 columns x 1 row
 		@media (min-width: $break-md) {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(1, 1fr);
 			padding: 3rem;
-			padding-top:25rem;
-			
-			.projectItem {
-				width: 100%;
-			}
-
+			margin-top: 25rem;
+			max-width: 1500px;
+			border-top: 4px solid black;
 		}
 	}
 
 	.projectItem {
 		display: grid;
-		flex-direction: column;
 		align-items: center;
-		padding: 1rem 1rem 3rem 1rem;
-				grid-template-areas: 'image'
-							 'name'
-							 'framework'
-							 'desc'
-							 'link';
+		padding: 1rem;
+		grid-template-areas:
+			'image'
+			'name'
+			'framework'
+			'desc'
+			'link';
 
-		border-bottom: 3px solid black;
-		margin-bottom: 1rem;
+		background-color: $color--dark-shade-brown;
+		margin: auto auto 3rem auto;
+		color: white;
+		box-shadow: 6px 9px 12px 4px rgb(0, 0, 0);
+		position: relative;
+		z-index: 1;
+		border-radius: 4px;
+
+		&:before {
+			content: ' ';
+			display: block;
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-image: url('../src/assets/img/brushed-alum-dark.png');
+			background-size: auto;
+			background-position: center;
+			transform: scaleX(-1);
+			z-index: -1;
+		}
 
 		&:last-of-type {
 			border-bottom: 0;
@@ -64,64 +85,150 @@
 
 		.project-image {
 			width: 100%;
-			aspect-ratio: 2 / 1; // sources are 1.77 to 2.12, so little gets cropped
+			max-width: 100%;
+			height: auto;
+			aspect-ratio: 2 / 1;
 			object-fit: cover;
 			object-position: top;
 			display: block;
-			border: 4px solid black;
+			border: 1px solid black;
 			margin-bottom: 1rem;
-			grid-area: image
+			grid-area: image;
+			position: relative;
+			z-index: 3;
+
+			@media (min-width: $break-md) {
+				width: 450px;
+				height: 300px;
+				max-width: none;
+				aspect-ratio: auto;
+			}
 		}
 
 		.project-name {
-			font-size: 3rem;
+			font-size: 2rem;
 			font-weight: bold;
 			grid-area: name;
+
+			@media (min-width: $break-md) {
+				align-self: flow-end;
+				border-bottom: 3px solid white;
+				font-size: 3rem;
+				max-width: 280px;
+				width: 100%;
+				justify-self: flex-end;
+			}
 		}
 
 		.project-framework {
-			font-size: 3rem;
+			font-size: 2rem;
 			font-style: italic;
 			grid-area: framework;
+			justify-content: center;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			@media (min-width: $break-md) {
+				align-self: baseline;
+				justify-content: end;
+				align-items: end;
+				font-size: 3rem;
+
+				.frame-name {
+					align-self: center;
+				}
+
+				.skillIcon {
+					align-self: center;
+				}
+			}
 		}
 
 		.project-purpose {
-			font-size: 2rem;
+			font-size: 1.25rem;
 			padding: 0;
-			list-style-position: inside; // bullets stay with centered text
+			list-style-position: inside;
 			text-align: left;
 			grid-area: desc;
-			
+			font-family: 'Hammersmith One', sans-serif;
+
 			@media (min-width: $break-md) {
 				padding-left: 4rem;
 				list-style-position: outside;
+				font-size: 1.5rem;
 			}
 		}
 
 		.project-link {
-				color: white;
-				border: 4px solid black;
-				border-radius: 6px;
-				padding: 0.8rem 1rem;
-				background: black;
-				grid-area: link;
-				align-self: flex-end;
-				width: 200px;
-				justify-self: center;
-				text-align: center;
-				font-size: 3rem;
+			color: white;
+			border: 4px solid black;
+			border-radius: 6px;
+			padding: 0.8rem 1rem;
+			background: black;
+			grid-area: link;
+			align-self: flex-end;
+			width: 200px;
+			justify-self: center;
+			text-align: center;
+			font-size: 3rem;
 
-				&:hover {
-					background: white;
-					color: black;
-				}
+			&:hover {
+				background: white;
+				color: black;
+			}
+		}
+
+		.skillIcon {
+			width: 40px;
+			display: flex;
+			margin-left: 1rem;
+			@media (min-width: $break-md) {
+				width: 70px;
+			}
+		}
+
+		svg {
+			height: 100%;
+			width: 100%;
 		}
 
 		@media (min-width: $break-md) {
-			border-bottom: 0;
-			border-left: 4px solid black;
-			border-right: 4px solid black;
-			padding-bottom: 1rem;
+			max-width: 800px;
+			grid-template-columns: 450px 1fr;
+			width: 100%;
+			opacity: 0;
+			transition:
+				transform 0.9s ease-out,
+				opacity 0.9s ease-out;
+			grid-template-areas:
+				'image name'
+				'image framework'
+				'desc desc'
+				'desc desc'
+				'link link';
+			text-align: right;
+
+			&:nth-child(even) {
+				transform: translateX(100vw);
+				margin-right: 10rem;
+			}
+
+			&:nth-child(odd) {
+				transform: translateX(-100vw);
+				margin-left: 10rem;
+			}
+
+			&.inView {
+				transform: none;
+				opacity: 1;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				transform: none !important;
+				opacity: 1;
+				transition: none;
+			}
 		}
 	}
 }

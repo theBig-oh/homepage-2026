@@ -1,15 +1,17 @@
 import reactGuitarImg from '../assets/img/reactguitar.webp';
 import guitarReduxImg from '../assets/img/guitarredux.webp';
+import wordleImg from '../assets/img/wordle.webp';
 import evenHubImg from '../assets/img/evenhub.webp';
-import emailIcon from '../assets/img/email.png';
-import linkedInIcon from '../assets/img/linkedIn.png';
-import gitIcon from '../assets/img/gitBlack.png';
+import emailIcon from '../assets/img/email.webp';
+import linkedInIcon from '../assets/img/linkedIn.webp';
+import gitIcon from '../assets/img/gitBlack.webp';
 import jsIcon from '../assets/svg/JavaScript.svg?raw';
 import htmlIcon from '../assets/svg/HTML5.svg?raw';
 import cssIcon from '../assets/svg/CSS3.svg?raw';
 import reactIcon from '../assets/svg/React.svg?raw';
 import vueIcon from '../assets/svg/Vuejs.svg?raw';
 import javaIcon from '../assets/svg/Java.svg?raw';
+import tsIcon from '../assets/svg/TypeScript.svg?raw';
 
 var data = {
             /* Personal Info */
@@ -137,8 +139,10 @@ var data = {
             "projects": [
               {
                 "name": "BikeShare Viewer",
+                "codeName": "bikeshare",
                 "url":"https://hub.evenrealities.com/landing?package_id=com.omedrano.citibikemap",
                 "framework":"TypeScript",
+                "frameIcon": tsIcon,
                 "purpose": [
                     "Available for the Even Realities G2 glasses, using the ER design system.",
                     "Supports multiple cities that use a bike share service.",
@@ -148,26 +152,43 @@ var data = {
               },
               {
                 "name": "Guitar Tools",
+                "codeName": "guitartools",
                 "url":"http://reactguitar.thebigoh.net",
                 "framework":"ReactJS",
+                "frameIcon": reactIcon,
                 "purpose": [
-                  "Wanted to help guitarist find their way around the fretboard with music theory",
-                  "Added a \"Lefty\" mode for lefty guitarist after popular demand",
+                  "Wanted to help guitarists find their way around the fretboard with music theory",
+                  "Custom tuning options, along with presets",
                   "Made with \"Responsive Design\" in mind."
                 ],
                 "projectImage": reactGuitarImg,
               },
               {
-                "name": "Guitar Tools",
+                "name": "Harmonic Visualizer",
+                "codeName": "harmvis",
                 "url":"http://guitarredux.thebigoh.net",
                 "framework":"Vanilla JS / No Framework",
+                "frameIcon": jsIcon,
                 "purpose": [
                   "Helping guitarists learn where the nearest harmonic is for different positions on the fretboard",
                   "Stylized to look like a marshalls amp",
                   "Made with Vanilla JS only. Desktop Only"
                 ],
                 "projectImage": guitarReduxImg,
-              }              
+              },
+              {
+                "name": "Not Wordle",
+                "codeName": "wordle",
+                "url":"http://wordle.thebigoh.net",
+                "framework":"ReactJS",
+                "frameIcon": reactIcon ,
+                "purpose": [
+                  "...It's Wordle",
+                  "Built using Vite, ReactJS, and SCSS",
+                  "Can retry as many times as you want"
+                ],
+                "projectImage": wordleImg,
+              }                 
             ]
           }
 

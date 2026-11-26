@@ -1,8 +1,8 @@
 @use '../settings' as *;
 
 .navBarContainerBase {
-	font-family: "Times New Roman", Times, serif;
- 
+	font-family: 'Times New Roman', Times, serif;
+
 	display: flex;
 	height: 100vh;
 	position: fixed;
@@ -10,9 +10,9 @@
 	left: 0;
 	width: 100%;
 	z-index: 100;
-	transition: height 0.3s ease; // back to the top
+	transition: height 0.3s ease;
 
-	border-bottom: 5px solid rgba(0,0,0,0);
+	border-bottom: 5px solid rgba(0, 0, 0, 0);
 
 	&.scrolling {
 		height: 60vh;
@@ -21,12 +21,11 @@
 	&.scrolled {
 		height: $nav-height--mobile--collapsed;
 		transition: 0.3s ease forwards;
-		border-bottom: 5px solid rgba(0,0,0,1);
+		border-bottom: 5px solid rgba(0, 0, 0, 1);
 		background-color: #fff8f5;
-    	background-image: url("../src/assets/img/brushed-alum-dark.png");
+		background-image: url('../src/assets/img/brushed-alum-dark.png');
 	}
 
-	// Desktop override
 	@media (min-width: $break-md) {
 		transition: none;
 		border-bottom: 0;
@@ -53,7 +52,7 @@
 		display: block;
 	}
 
-	@media (min-width: $break-md){
+	@media (min-width: $break-md) {
 		display: block;
 	}
 }
@@ -62,7 +61,6 @@
 	width: auto;
 	display: block;
 	transition: height 0.3s ease;
-
 }
 
 .pageItem a svg {
@@ -75,7 +73,6 @@
 	--logo-height: #{$logo-height--mobile--expanded};
 	align-self: center;
 
-	// centered stack (logo above pages); .scrolled switches it to a row
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -94,7 +91,7 @@
 	@media (min-width: $break-md) {
 		.scrolled &,
 		& {
-			display: none; 
+			display: none;
 		}
 	}
 }
@@ -116,14 +113,14 @@
 	.scrolled & {
 		--nav-height: #{$nav-height--collapsed};
 		--logo-height: #{$logo-height--collapsed};
+		justify-content: flex-start;
 	}
 
 	@media (min-width: $break-md) {
 		display: flex;
+		justify-content: center;
 	}
 
-	// Logo is ~2.55:1 and shares the row with the 40% pages block, so cap its
-	// height by viewport width too (20vw => ~51vw wide) or it overflows near 1025px.
 	.site-logo svg {
 		height: min(var(--logo-height), 20vw);
 	}
@@ -140,10 +137,8 @@
 	}
 
 	.navBarContainerDesktop & {
-		width: 40%;
-		// scales with the viewport so the links never outgrow the 40% block (overflowed near 1025px)
 		font-size: min(5rem, 3vw);
-		padding-left: 1rem; 
+		padding-left: 1rem;
 		transition: all 0.3s ease;
 
 		.pageItem {
@@ -161,7 +156,6 @@
 		}
 	}
 
-	// No outline on the link or logo, in any state (click leaves it focused)
 	.pageItem__Ghost a,
 	.pageItem__Ghost a:hover,
 	.pageItem__Ghost a:focus,
@@ -173,7 +167,7 @@
 
 	.pageItem__Ghost svg {
 		height: 90px;
-		fill: black; // always black unless actively hovered
+		fill: black;
 		transition: all 0.5s ease;
 
 		.scrolled & {
@@ -189,11 +183,9 @@
 		}
 	}
 
-	// Hover only on real hover devices: on touch, :hover sticks after a tap and kept the logo white
 	@media (hover: hover) {
 		.pageItem__Ghost a:hover svg {
 			fill: white;
 		}
 	}
-
 }

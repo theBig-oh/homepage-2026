@@ -1,47 +1,44 @@
 @use 'settings' as *;
 @use 'index' as *;
 
-@media (prefers-reduced-motion: no-prefence) {
-  html {
-    scroll-behavior: smooth;
-  }
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
 }
 
 .bodyContain {
-  // Mobile first: everything centered (desktop override at the bottom of this block)
-  text-align: center;
+	text-align: center;
 
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  position: relative;
-  background-color: #fff8f5;
-  background-image: url("../src/assets/img/brushed-alum-dark.png");
-  height: 100vh;
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	position: relative;
+	background-color: #fff8f5;
+	background-image: url('../src/assets/img/brushed-alum-dark.png');
+	height: 100vh;
 
-  .bodyItems {
-    font-family: "Times New Roman", Times, serif;
-    width: 100%;
-    height: fit-content;
-    background-color: #fff8f5;
-    background-image: url("../src/assets/img/brushed-alum-dark.png");
+	.bodyItems {
+		font-family: 'DM Serif Display', serif;
+		width: 100%;
+		height: fit-content;
+		background-color: #fff8f5;
+		background-image: url('../src/assets/img/brushed-alum-dark.png');
 
-    @media (min-width: $break-md) {
-      height: 100vh;
-    }
+		@media (min-width: $break-md) {
+			height: 100vh;
+		}
+	}
 
-  }
+	.bodySpacer {
+		height: 60vh;
 
-  .bodySpacer {
-    height: 60vh;
+		@media (min-width: $break-md) {
+			height: 85vh;
+		}
+	}
 
-    @media (min-width: $break-md) {
-      height: 85vh;
-    }
-  }
-
-  // Desktop goes back to left-aligned
-  @media (min-width: $break-md) {
-    text-align: left;
-  }
+	@media (min-width: $break-md) {
+		text-align: left;
+	}
 }

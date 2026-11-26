@@ -1,28 +1,24 @@
-@use './utils/index' as *; 
+@use './utils/index' as *;
 
-// Colors
-
-$color--darker-brown: #3B2B24;
-$color--dark-brown: #6E422D;
-$color--dark-tan: #D4B8AB;
+$color--darker-brown: #3b2b24;
+$color--dark-brown: #6e422d;
+$color--dark-tan: #d4b8ab;
 $color--light-tan: #fff8f5;
-$color--salmon-tan: #FFB896;
+$color--salmon-tan: #ffb896;
 $color--slate-black: #3b322e;
 
-
 $color--dark-grey: #222831;
-$color--mid-grey: #393E46;
+$color--mid-grey: #393e46;
 $color--dark-tanned: #948979;
-$color--khaki: #DFD0B8;
+$color--khaki: #dfd0b8;
 
-// Breakpoints
+$color--dark-shade-brown: #55433b;
+$color--mocha-brown: #cca290;
 
 $break-sm: 20rem;
-$break-md: 64.0625rem; // 1025px: tablets (up to 1024px wide, portrait or landscape) keep the mobile layout
+$break-md: 64.0625rem;
 $break-lg: 75rem;
 $break-xl: 90rem;
-
-// Navbar sizes (expanded = top of page, collapsed = after scroll)
 
 $nav-height--expanded: 100vh;
 $nav-height--collapsed: 8rem;
@@ -33,4 +29,3 @@ $nav-height--mobile--peak: 70vh;
 $nav-height--mobile--collapsed: 8rem;
 $logo-height--mobile--expanded: 10vh;
 $logo-height--mobile--collapsed: 5rem;
-

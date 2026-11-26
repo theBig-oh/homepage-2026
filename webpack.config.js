@@ -7,6 +7,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  performance: {
+    maxAssetSize: 300000 // bytes; guitarredux.webp is ~284KB (default limit 244KiB warns)
+  },
   module: {
     rules: [
       {

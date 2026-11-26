@@ -1,13 +1,12 @@
 @use '../settings' as *;
 
-// Shown by src/Components/ghostOverlay.js when the ghost logo is clicked
 .ghostOverlay {
 	position: fixed;
 	inset: 0;
-	z-index: 200; // above the navbar (100)
-	pointer-events: none; // never blocks the page
+	z-index: 200;
+	pointer-events: none;
 	opacity: 0;
-	transition: opacity 0.5s ease; // fade in and fade out
+	transition: opacity 0.5s ease;
 
 	&.visible {
 		opacity: 1;
@@ -24,7 +23,6 @@
 		}
 	}
 
-	// Mobile first: one random picture, centered
 	.ghost-pic {
 		inset: 0;
 		margin: auto;
@@ -33,7 +31,6 @@
 		width: auto;
 	}
 
-	// Desktop: one picture in each corner
 	@media (min-width: $break-md) {
 		.ghost-pic {
 			inset: auto;
@@ -41,35 +38,72 @@
 			max-width: 22vw;
 			max-height: 45vh;
 
-				transition: all 1.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
- // slide in; delay set per picture in ghostOverlay.js
+			transition: all 1.5s
+				linear(
+					0 0%,
+					0 2.27%,
+					0.02 4.53%,
+					0.04 6.8%,
+					0.06 9.07%,
+					0.1 11.33%,
+					0.14 13.6%,
+					0.25 18.15%,
+					0.39 22.7%,
+					0.56 27.25%,
+					0.77 31.8%,
+					1 36.35%,
+					0.89 40.9%,
+					0.85 43.18%,
+					0.81 45.45%,
+					0.79 47.72%,
+					0.77 50%,
+					0.75 52.27%,
+					0.75 54.55%,
+					0.75 56.82%,
+					0.77 59.1%,
+					0.79 61.38%,
+					0.81 63.65%,
+					0.85 65.93%,
+					0.89 68.2%,
+					1 72.7%,
+					0.97 74.98%,
+					0.95 77.25%,
+					0.94 79.53%,
+					0.94 81.8%,
+					0.94 84.08%,
+					0.95 86.35%,
+					0.97 88.63%,
+					1 90.9%,
+					0.99 93.18%,
+					0.98 95.45%,
+					0.99 97.73%,
+					1 100%
+				);
 
-			// Each picture starts offscreen on its own edge
-			&:nth-child(1) {
+			&[data-slot='0'] {
 				top: 2rem;
 				left: 2rem;
-				transform: translateY(-100vh); // from the top
+				transform: translateY(-100vh);
 			}
 
-			&:nth-child(2) {
+			&[data-slot='1'] {
 				top: 2rem;
 				right: 2rem;
-				transform: translateX(100vw); // from the right
+				transform: translateX(100vw);
 			}
 
-			&:nth-child(3) {
+			&[data-slot='2'] {
 				bottom: 2rem;
 				left: 2rem;
-				transform: translateX(-100vw); // from the left
+				transform: translateX(-100vw);
 			}
 
-			&:nth-child(4) {
+			&[data-slot='3'] {
 				bottom: 2rem;
 				right: 2rem;
-				transform: translateY(100vh); // from the bottom
+				transform: translateY(100vh);
 			}
 
-			// Must stay after the nth-child rules (same specificity)
 			&.in {
 				transform: none;
 			}

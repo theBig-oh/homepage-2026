@@ -1,11 +1,12 @@
 import MakeElement from '../Tools/MakeElement.js';
 import facePic from '../assets/img/bw-face.webp';
+import selfPic from '../assets/img/self.webp';
 
 const makeEle = new MakeElement;
 
 const tabs = {
 	'mobile': ['bio','exp'],
-	'desktop': ['bio','exp','projects']
+	'desktop': ['bio','exp']
 };
 
 
@@ -35,7 +36,6 @@ const BIO_COPY = `<p>NYC-raised front end developer who builds things for the we
 					<p> P.S. If you're still reading this, try to find my dog, he's hidden somewhere in this site. --- <span>Hint: The logo</span> </p>
 					</br>
 					<p class="sig">Oscar Medrano</p>
-			
 				`;
 
 export function AboutCardDesktop(data, work, projects) {
@@ -68,7 +68,6 @@ export function AboutCardDesktop(data, work, projects) {
 
 		aboutTabLink.addEventListener('click', function(e) {
 			aboutTabClickFunction(tab);
-			console.log(e);
 		})
 
 		aboutCardTabs.append(aboutTabLink);
@@ -80,6 +79,9 @@ export function AboutCardDesktop(data, work, projects) {
 	let aboutCardBioText = makeEle.createEle('div','aboutBio--content',null,['aboutCard--bio--text','aboutCard--bio-content']);
 	let aboutCardBioSkills = makeEle.createEle('div','aboutBio--skills',null,['aboutCard--bio--skills','aboutCard--bio-content']);
 	let aboutSkillContain = makeEle.createEle('div','aboutSkillContain',null,['aboutSkillContain']);
+	let aboutSelfContain = makeEle.createEle('div', 'aboutSelfContain',null,['aboutSelfContain']);
+	let aboutSelfPic = makeEle.createEle('img','aboutSelfPic',null,['aboutSelfPic']);
+
 	aboutCardBioText.innerHTML = `
 		<div class="basic-info">
 			${BIO_COPY}
@@ -98,9 +100,11 @@ export function AboutCardDesktop(data, work, projects) {
 		aboutSkillContain.append(skillDiv.cloneNode(true));
 	})
 
+	aboutSelfPic.src = selfPic;
 	aboutCardBioSkills.append(aboutSkillContain);
 
-	aboutCardBioSection.append(aboutCardBioText, aboutCardBioSkills);
+	aboutSelfContain.append(aboutSelfPic);
+	aboutCardBioSection.append(aboutCardBioText, aboutSelfContain, aboutCardBioSkills);
 
 	//Exp section
 	let aboutCardExpSection = makeEle.createEle('div','aboutExp',[0,0,12,12],['aboutCard--exp','exp','aboutCard--tab-content']);
@@ -122,26 +126,61 @@ export function AboutCardDesktop(data, work, projects) {
 	//Projects section
 	let aboutCardProjectsSection = makeEle.createEle('div','aboutProjects',[0,0,12,12],['aboutCard--projects','projects','aboutCard--tab-content']);
 
+	let aboutCardProjectTabSelector = makeEle.createEle('div','aboutProjectsSelector', [0,0,12,12],['aboutCard--project--selector', 'aboutCard--projectSectionSelector']);
+	let projectItemContainer = makeEle.createEle('div', 'projectItemContainer', null, ['projectItemContainer']);
+
+
+
 	(projects || []).forEach((project, i) => {
-		let projectItem = makeEle.createEle('div','projectItem_'+i, null,['projectItem']);
+		let projectNavItem = makeEle.createEle('div', 'projectItemTab_'+i, null, ['projectItemTab','aboutCard--projectSectionSelector--tab','aboutCard--projectSectionSelector--'+project.codeName, 'projectItemTab__'+project.codeName]);
+		let projectItem = makeEle.createEle('div','projectItem_'+i, null,['projectItem', 'projectItem__'+project.codeName]);
+
+		projectNavItem.innerHTML = `
+			<div class="projectTab--name"> ${project.name} </div>
+		`;
+
+		projectNavItem.addEventListener('click', function(e) {
+			document.querySelectorAll('.projectItemTab').forEach((item) => {
+				item.classList.remove('activeProject');
+
+				if (item.classList.contains('projectItemTab__'+project.codeName)) {
+					item.classList.add('activeProject');
+				}
+			})
+			document.querySelectorAll('.projectItem').forEach((item) => {
+				item.classList.remove('activeProject');
+
+				if (item.classList.contains('projectItem__'+project.codeName)) {
+					item.classList.add('activeProject');
+				}
+			})
+		})
+
+		if (i == 0) {
+			projectItem.classList.add('activeProject');
+			projectNavItem.classList.add('activeProject');
+		}
 
 		projectItem.innerHTML = `
 			<img class="project-image" src="${project.projectImage}" alt="${project.name} screenshot" loading="lazy" />
 			<h3 class="project-name">
 				${project.name}
 			</h3>
-			<p class="project-framework">${project.framework}</p>
+			<p class="project-framework">${project.framework} <span class="skillIcon">${project.frameIcon || ''}</span> </p> 
 			<ul class="project-purpose">${project.purpose.map((line) => `<li>${line}</li>`).join('')}</ul>
 			<a class="project-link" href="${project.url}" target="_blank" rel="noopener noreferrer"> Link To Project </a>
 		`;
 
-		aboutCardProjectsSection.append(projectItem);
+		aboutCardProjectTabSelector.append(projectNavItem);
+		projectItemContainer.append(projectItem);
 	});
 
+	projectItemContainer
+	aboutCardProjectsSection.append(aboutCardProjectTabSelector, projectItemContainer);
 
 	//Putting everything together now
 	aboutCardLeft.append(aboutCardPortrait, aboutCardTabs);
-	aboutCardRight.append(aboutCardBioSection, aboutCardExpSection, aboutCardProjectsSection)
+	aboutCardRight.append(aboutCardBioSection, aboutCardExpSection)
 	aboutCardContent.append(aboutCardLeft, aboutCardRight);
 
 	aboutCardDesktop.append(aboutCardContent);
@@ -162,6 +201,11 @@ export function AboutCardDesktop(data, work, projects) {
 
 	window.addEventListener('scroll', onScroll, {passive:true});
 	onScroll(); // set correct state on load (e.g. refresh mid-scroll)
+
+	// Project Tab clicks
+
+	let projectTabs = document.querySelectorAll('.projectItemTab');
+
 
 	// Initial state: Bio shown, others hidden (elements aren't in the DOM yet, so set classes directly)
 	[aboutCardBioSection, aboutCardExpSection, aboutCardProjectsSection].forEach((section, i) => {

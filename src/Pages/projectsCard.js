@@ -18,7 +18,7 @@ export default function ProjectsCard(projects) {
 			<h3 class="project-name">
 				${project.name}
 			</h3>
-			<p class="project-framework">${project.framework}</p>
+			<p class="project-framework"><span class="frame-name">${project.framework}</span> <span class="skillIcon">${project.frameIcon || ''}</span> </p> 
 			<ul class="project-purpose">${project.purpose.map((line) => `<li>${line}</li>`).join('')}</ul>
 			<a class="project-link" href="${project.url}" target="_blank" rel="noopener noreferrer"> Click to see </a>
 		`;
@@ -27,6 +27,22 @@ export default function ProjectsCard(projects) {
 	});
 
 	projectCard.append(projectTitle, projectGrid);
+
+	// Slide-in: add .inView once each item scrolls into view. The hidden/offset start
+	// state only exists in the desktop media query in the SCSS, so mobile is unaffected.
+	// (Not IntersectionObserver: it accounts for transforms, so an item parked off-screen
+	// horizontally would never count as visible. Only the vertical position matters here.)
+	const checkSlideIn = () => {
+		if (!projectCard.isConnected) return;
+		projectGrid.querySelectorAll('.projectItem:not(.inView)').forEach((item) => {
+			if (item.getBoundingClientRect().top < window.innerHeight * 0.85) {
+				item.classList.add('inView'); // animate once
+			}
+		});
+	};
+
+	window.addEventListener('scroll', checkSlideIn, { passive: true });
+	requestAnimationFrame(checkSlideIn);
 
 	// Same drift as aboutCardName, but measured from when the card enters the viewport
 	// (window.scrollY would already be maxed out by the time this card is reached)

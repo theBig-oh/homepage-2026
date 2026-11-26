@@ -1,7 +1,5 @@
 @use '../settings' as *;
 
-// .bodyItems (background + full width) sets height: 100vh on desktop; a footer should fit its content.
-// Prefixed with .bodyContain so it outranks that rule regardless of stylesheet order.
 .bodyContain .footerContainer.bodyItems {
 	height: fit-content;
 }
@@ -19,7 +17,6 @@
 		font-weight: bold;
 	}
 
-	// Mobile first: stacked
 	.footerLinks {
 		display: flex;
 		flex-direction: column;
@@ -47,7 +44,6 @@
 	}
 
 	.footer-icon {
-		// icons have different aspect ratios, so fit each in the same box
 		width: 4rem;
 		height: 4rem;
 		object-fit: contain;
